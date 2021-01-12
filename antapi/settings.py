@@ -25,7 +25,7 @@ SECRET_KEY = 'y=!2n+uvxk)b*zl6n=g+yhs@3pu$r(&li#c$nkudv@mj&a4ht4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['antapi.pythonanywhere.com']
 
 
 # Application definition
