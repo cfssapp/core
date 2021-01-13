@@ -7,7 +7,7 @@ app_name = 'users'
 
 urlpatterns = [
     path('register/', CustomUserCreate.as_view(), name="create_user"),
-    path('logout/blacklist/', BlacklistTokenUpdateView.as_view(),
+    path('logout/', BlacklistTokenUpdateView.as_view(),
          name='blacklist'),
 
     path('login/', views.MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
