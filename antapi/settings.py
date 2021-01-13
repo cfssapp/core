@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'api.apps.ApiConfig',
-    # 'users',
+    'users',
 
     'rest_framework',
     'corsheaders',
@@ -138,4 +138,4 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 # Custom user model & JWT
-# AUTH_USER_MODEL = "users.NewUser"
+AUTH_USER_MODEL = "users.NewUser"
