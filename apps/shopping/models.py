@@ -14,7 +14,8 @@ class Item(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='item', default=1)
     ordered = models.BooleanField(default=False)
     cartadded = models.BooleanField(default=False)
-    
+    order_id = models.ForeignKey('Order', on_delete=models.CASCADE)
+
     def __str__(self):
         return self.tracking_no
 
@@ -26,5 +27,6 @@ class Order(models.Model):
     items = models.ManyToManyField(Item)
     shipping_address = models.CharField(max_length=100, default="not set")
     
-    
+    def __str__(self):
+        return self.unique_id
 
