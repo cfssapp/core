@@ -136,5 +136,3 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
 ]
 
-# Custom user model & JWT
-AUTH_USER_MODEL = "users.NewUser"
