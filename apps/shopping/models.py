@@ -21,9 +21,7 @@ class Item(models.Model):
 
 
 class Order(models.Model):
-    # unique_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    # auto_id = models.BigAutoField(default=100000, editable=False)
-    unique_id = models.BigAutoField(default=100000, editable=False)
+    unique_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='order', default=1)
     items = models.ManyToManyField(Item)
