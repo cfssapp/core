@@ -29,6 +29,6 @@ class Order(models.Model):
     shipping_address = models.CharField(max_length=100, default="not set")
     
     def __str__(self):
-        return str(self.id)
+        return str(self.unique_id)
         
 
