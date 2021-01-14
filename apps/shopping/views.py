@@ -153,20 +153,6 @@ class AddToOrderView(APIView):
         serializer = ItemSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
 
-class RemoveFromOrderView(APIView):
-    def post(self, request, *args, **kwargs):
-        order_id = request.data.get('order_id', None)
-
-        ordered_items = Item.objects.filter(item_owner=self.request.user, order_id=order_id)
-        
-        ordered_items.update(ordered=False)
-        
-        for item in ordered_items:
-            item.save()
-
-        articles = Order.objects.filter(user=self.request.user).order_by('-id')
-        serializer = OrderSerializer(articles, many=True)
-        return JsonResponse(serializer.data, safe=False)
 
 class DeleteOrder(generics.RetrieveDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
