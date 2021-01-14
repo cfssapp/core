@@ -137,7 +137,6 @@ class AddToOrderView(APIView):
         )
 
         order_qs = Order.objects.filter(user=request.user).first()
-
         order_id = order_qs.unique_id
 
         cartadded_items = Item.objects.filter(item_owner=self.request.user, cartadded=True)
@@ -176,6 +175,13 @@ class DeleteOrder(generics.RetrieveDestroyAPIView):
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
+
+        instance.update(order_id=null)
+        instance.update(ordered=False)
+        for item in instance:
+            item.save()
+
+
         self.perform_destroy(instance)
         articles = Order.objects.filter(user=self.request.user).order_by('-id')
         serializer = OrderSerializer(articles, many=True)
