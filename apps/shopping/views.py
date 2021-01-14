@@ -128,6 +128,10 @@ class OrderList(generics.ListAPIView):
 
 
 class AddToOrderView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = OrderSerializer
+    queryset = Order.objects.all()
+
     def post(self, request, *args, **kwargs):
         shipping_address = request.data.get('shipping_address', None)
 
