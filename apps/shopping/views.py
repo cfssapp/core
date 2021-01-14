@@ -140,10 +140,9 @@ class AddToOrderView(APIView):
             shipping_address=shipping_address
         )
 
-        instance = self.get_object()
-        order_id = instance.unique_id
-        # order_qs = Order.objects.filter(user=request.user).first()
-        # order_id = order_qs.unique_id
+        
+        order_qs = Order.objects.filter(user=self.request.user).order_by('-id').first()
+        order_id = order_qs.unique_id
 
         cartadded_items = Item.objects.filter(item_owner=self.request.user, cartadded=True)
         for item in cartadded_items:
