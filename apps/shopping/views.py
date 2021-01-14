@@ -174,15 +174,15 @@ class DeleteOrder(generics.RetrieveDestroyAPIView):
     queryset = Order.objects.all()
 
     def destroy(self, request, *args, **kwargs):
-    
-        # order_id = self.get_queryset().order_id
-        # ordered_items = Item.objects.filter(item_owner=self.request.user, order_id=order_id)
-        # ordered_items.update(ordered=False)
-        # for item in ordered_items:
-        #     item.save()
-
         instance = self.get_object()
         self.perform_destroy(instance)
+
+        order_qs = self.get_queryset()
+        ordered_items = Item.objects.filter(item_owner=self.request.user, order_id=order_qs.order_id)
+        ordered_items.update(ordered=False)
+        for item in ordered_items:
+            item.save()
+        
         articles = Order.objects.filter(user=self.request.user).order_by('-id')
         serializer = OrderSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
