@@ -177,7 +177,6 @@ class DeleteOrder(generics.RetrieveDestroyAPIView):
     
         order_id = self.get_object().order_id
         ordered_items = Item.objects.filter(item_owner=self.request.user, order_id=order_id)
-        ordered_items.update(order_id=null)
         ordered_items.update(ordered=False)
         for item in instance:
             item.save()
