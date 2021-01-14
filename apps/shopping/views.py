@@ -108,6 +108,7 @@ class RemoveFromCartView(APIView):
         serializer = ItemSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
 
+
 class CartList(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = ItemSerializer
@@ -116,6 +117,7 @@ class CartList(generics.ListAPIView):
         user = self.request.user
         return Item.objects.filter(item_owner=user, cartadded=True, ordered=False).order_by('-id')
 
+
 class OrderList(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = OrderSerializer
@@ -123,6 +125,7 @@ class OrderList(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         return Order.objects.filter(user=user).order_by('-id')
+
 
 class AddToOrderView(APIView):
     def post(self, request, *args, **kwargs):
@@ -144,4 +147,19 @@ class AddToOrderView(APIView):
 
         articles = Item.objects.filter(item_owner=self.request.user, cartadded=True, ordered=False).order_by('-id')
         serializer = ItemSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+class RemoveFromOrderView(APIView):
+    def post(self, request, *args, **kwargs):
+        order_id = request.data.get('order_id', None)
+
+        ordered_items = Item.objects.filter(item_owner=self.request.user, order_id=order_id)
+        
+        ordered_items.update(ordered=False)
+        
+        for item in ordered_items:
+            item.save()
+
+        articles = Order.objects.filter(user=self.request.user).order_by('-id')
+        serializer = OrderSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
