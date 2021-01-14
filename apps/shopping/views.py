@@ -166,8 +166,8 @@ class RemoveFromOrderView(APIView):
 
 class DeleteOrder(generics.RetrieveDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    serializer_class = ItemSerializer
-    queryset = Item.objects.all()
+    serializer_class = OrderSerializer
+    queryset = Order.objects.all()
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
