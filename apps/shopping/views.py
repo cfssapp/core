@@ -185,6 +185,12 @@ class DeleteOrder(generics.RetrieveDestroyAPIView):
         instance = self.get_object()
         order_id = instance.unique_id
         self.perform_destroy(instance)
+
+        ordered_items = Item.objects.filter(item_owner=self.request.user, order_id=order_id)
+        ordered_items.update(ordered=False)
+        for item in ordered_items:
+            item.save()
+
         articles = Order.objects.filter(user=self.request.user).order_by('-id')
         serializer = OrderSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
