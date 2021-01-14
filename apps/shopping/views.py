@@ -140,7 +140,6 @@ class AddToOrderView(APIView):
         for item in cartadded_items:
             order.items.add(item)
 
-        cartadded_items.update(order_id=Order.unique_id)
         cartadded_items.update(ordered=True)
         cartadded_items.update(cartadded=False)
         for item in cartadded_items:
