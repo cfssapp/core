@@ -163,3 +163,15 @@ class RemoveFromOrderView(APIView):
         articles = Order.objects.filter(user=self.request.user).order_by('-id')
         serializer = OrderSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
+
+class DeleteOrder(generics.RetrieveDestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = ItemSerializer
+    queryset = Item.objects.all()
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        articles = Order.objects.filter(user=self.request.user).order_by('-id')
+        serializer = OrderSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
