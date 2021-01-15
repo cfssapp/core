@@ -138,7 +138,7 @@ class AddToOrderView(APIView):
         order = Order.objects.create(
             user=self.request.user,
             shipping_address=shipping_address
-            courier=courier
+            # courier=courier
         )
 
         
