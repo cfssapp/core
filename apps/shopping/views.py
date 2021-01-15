@@ -19,8 +19,7 @@ class ItemList(generics.ListAPIView):
     serializer_class = ItemSerializer
 
     def get_queryset(self):
-        user = self.request.user
-        return Item.objects.filter(item_owner=user, cartadded=False, ordered=False).order_by('-id')
+        return Item.objects.filter(item_owner=self.request.user, cartadded=False, ordered=False).order_by('-id')
 
 class ItemDetail(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -45,7 +44,7 @@ class CreateItem(generics.CreateAPIView):
             return Response(
                 serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         serializer.save(item_owner=self.request.user)
-        articles = Item.objects.filter(item_owner=user, cartadded=False, ordered=False).order_by('-id')
+        articles = Item.objects.filter(item_owner=self.request.user, cartadded=False, ordered=False).order_by('-id')
         serializer = ItemSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
         
@@ -65,7 +64,7 @@ class EditItem(generics.UpdateAPIView):
         if getattr(instance, '_prefetched_objects_cache', None):
             instance._prefetched_objects_cache = {}
 
-        articles = Item.objects.filter(item_owner=user, cartadded=False, ordered=False).order_by('-id')
+        articles = Item.objects.filter(item_owner=self.request.user, cartadded=False, ordered=False).order_by('-id')
         serializer = ItemSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
 
@@ -77,7 +76,7 @@ class DeleteItem(generics.RetrieveDestroyAPIView):
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         self.perform_destroy(instance)
-        articles = Item.objects.filter(item_owner=user, cartadded=False, ordered=False).order_by('-id')
+        articles = Item.objects.filter(item_owner=self.request.user, cartadded=False, ordered=False).order_by('-id')
         serializer = ItemSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
 
