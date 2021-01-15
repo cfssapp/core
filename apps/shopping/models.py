@@ -27,6 +27,7 @@ class Order(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='order', default=1)
     items = models.ManyToManyField(Item)
     shipping_address = models.CharField(max_length=100, default="not set")
+    courier = models.CharField(max_length=100, default="not set")
     
     def __str__(self):
         return str(self.unique_id)

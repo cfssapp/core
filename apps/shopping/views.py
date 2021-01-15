@@ -133,10 +133,12 @@ class AddToOrderView(APIView):
 
     def post(self, request, *args, **kwargs):
         shipping_address = request.data.get('shipping_address', None)
+        courier = request.data.get('courier', None)
 
         order = Order.objects.create(
             user=self.request.user,
             shipping_address=shipping_address
+            courier=courier
         )
 
         
