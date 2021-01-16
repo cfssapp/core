@@ -13,6 +13,8 @@ from rest_framework.views import APIView
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 
+from rest_framework import filters
+
 # Create your views here.
 class ItemList(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -178,3 +180,11 @@ class DeleteOrder(generics.RetrieveDestroyAPIView):
         articles = Order.objects.filter(user=self.request.user).order_by('-id')
         serializer = OrderSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
+
+
+class OrderQuery(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['=courier']
