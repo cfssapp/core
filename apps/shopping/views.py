@@ -188,3 +188,6 @@ class OrderQuery(generics.ListAPIView):
     serializer_class = OrderSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['=courier']
+
+    def get_queryset(self):
+        return Order.objects.filter(item_owner=self.request.user).order_by('-id')
