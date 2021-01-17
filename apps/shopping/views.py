@@ -184,10 +184,11 @@ class DeleteOrder(generics.RetrieveDestroyAPIView):
 
 class OrderQuery(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
+    # queryset = Order.objects.all()
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['=courier']
 
     def get_queryset(self):
-        return Order.objects.filter(item_owner=self.request.user).order_by('-id')
+        return Order.objects.filter(user=self.request.user).order_by('-id')
