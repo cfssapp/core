@@ -35,11 +35,8 @@ class CreateFoodItem(generics.CreateAPIView):
     serializer_class = FoodItemSerializer
 
     def create(self, request, *args, **kwargs):
-        tracking_no = request.data.get('tracking_no', None)
-        item_qs = FoodItem.objects.filter(tracking_no=tracking_no)
-       
-        if item_qs.exists():
-            return Response({"message": "Invalid request"}, status=HTTP_400_BAD_REQUEST)
+        name = request.data.get('name', None)
+        
 
         serializer = FoodItemSerializer(data=request.data)
         if not serializer.is_valid():
