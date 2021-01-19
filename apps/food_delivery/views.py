@@ -6,8 +6,8 @@ from rest_framework import generics
 from rest_framework.permissions import SAFE_METHODS, IsAuthenticated, IsAuthenticatedOrReadOnly, BasePermission, IsAdminUser, DjangoModelPermissions
 from rest_framework import viewsets, permissions
 
-from .serializers import FoodItemSerializer, OrderSerializer
-from .models import FoodItem, Order
+from .serializers import FoodItemSerializer, FoodOrderSerializer
+from .models import FoodItem, FoodOrder
 
 from rest_framework.views import APIView
 from django.shortcuts import render, get_object_or_404
