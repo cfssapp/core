@@ -23,3 +23,61 @@ class FoodItemList(generics.ListAPIView):
     def get_queryset(self):
         return FoodItem.objects.filter(cartadded=False, ordered=False).order_by('-id')
 
+class FoodItemDetail(generics.RetrieveAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = FoodItem.objects.all()
+    serializer_class = FoodItemSerializer
+
+
+class CreateFoodItem(generics.CreateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = FoodItem.objects.all()
+    serializer_class = FoodItemSerializer
+
+    def create(self, request, *args, **kwargs):
+        tracking_no = request.data.get('tracking_no', None)
+        item_qs = FoodItem.objects.filter(tracking_no=tracking_no)
+       
+        if item_qs.exists():
+            return Response({"message": "Invalid request"}, status=HTTP_400_BAD_REQUEST)
+
+        serializer = FoodItemSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(
+                serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer.save()
+        articles = FoodItem.objects.filter(cartadded=False, ordered=False).order_by('-id')
+        serializer = FoodItemSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
+        
+
+class EditFoodItem(generics.UpdateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = FoodItemSerializer
+    queryset = FoodItem.objects.all()
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            instance._prefetched_objects_cache = {}
+
+        articles = FoodItem.objects.filter(cartadded=False, ordered=False).order_by('-id')
+        serializer = FoodItemSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+class DeleteFoodItem(generics.RetrieveDestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = FoodItemSerializer
+    queryset = FoodItem.objects.all()
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        articles = FoodItem.objects.filter(cartadded=False, ordered=False).order_by('-id')
+        serializer = FoodItemSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
