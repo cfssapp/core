@@ -16,10 +16,9 @@ class FoodItem(models.Model):
 
 
 class FoodOrder(models.Model):
-    
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='order', default=1)
-    items = models.ManyToManyField(Item)
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='orderfood', default=1)
+    items = models.ManyToManyField(FoodItem)
     shipping_address = models.CharField(max_length=100, default="not set")
     courier = models.CharField(max_length=100, default="not set")
     
