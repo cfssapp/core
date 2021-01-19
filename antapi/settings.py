@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'users',
     'apps.shopping',
+    'apps.food_delivery',
 
     'rest_framework',
     'corsheaders',
