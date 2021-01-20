@@ -18,7 +18,10 @@ from rest_framework import filters
 # Create your views here.
 class FoodItemList(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
+    queryset = FoodItem.objects.all()
     serializer_class = FoodItemSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['=category']
 
     def get_queryset(self):
         return FoodItem.objects.filter(cartadded=False, ordered=False).order_by('-id')

@@ -184,7 +184,6 @@ class DeleteOrder(generics.RetrieveDestroyAPIView):
 
 class OrderQuery(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    # queryset = Order.objects.all()
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     filter_backends = [filters.SearchFilter]
