@@ -34,7 +34,7 @@ class FoodItemDetail(generics.RetrieveAPIView):
 
 class CreateFoodItem(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    parser_classes = [MultiPartParser, FormParser]
+    # parser_classes = [MultiPartParser, FormParser]
     queryset = FoodItem.objects.all()
     serializer_class = FoodItemSerializer
 
