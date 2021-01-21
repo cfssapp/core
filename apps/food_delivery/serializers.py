@@ -9,6 +9,7 @@ class FoodAvatarSerializer(serializers.ModelSerializer):
 
 class FoodItemSerializer(serializers.ModelSerializer):
     # avatar = FoodAvatarSerializer()
+    avatar = serializers.ImageField(max_length=None, use_url=True, allow_null=True, required=False)
 
     class Meta:
         model = FoodItem
