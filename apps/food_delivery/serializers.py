@@ -8,7 +8,7 @@ class FoodAvatarSerializer(serializers.ModelSerializer):
         fields ='__all__'
 
 class FoodItemSerializer(serializers.ModelSerializer):
-    avatar = FoodAvatarSerializer(many=True, read_only=True)
+    # avatar = FoodAvatarSerializer(many=True, read_only=True)
 
     class Meta:
         model = FoodItem
