@@ -8,7 +8,7 @@ class FoodAvatar(models.Model):
     file = models.ImageField(default='default.jpg', upload_to='upload_pics')
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 class FoodItem(models.Model):
