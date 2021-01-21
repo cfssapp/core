@@ -18,9 +18,10 @@ class FoodItemSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
-        rep['avatar'] = FoodAvatarSerializer(instance.avatar.file).data
+        # rep['avatar'] = FoodAvatarSerializer(instance.avatar.file).data
+        rep['avatar'] = FoodAvatarSerializer(FoodAvatar.file).data
         return rep
-        
+
 
 class FoodOrderSerializer(serializers.ModelSerializer):
     items = FoodItemSerializer(many=True, read_only=True)
