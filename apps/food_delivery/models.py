@@ -8,8 +8,9 @@ class FoodAvatar(models.Model):
     file = models.ImageField(default='default.jpg', upload_to='upload_pics')
 
     def __str__(self):
+        return self.id
         # return str(self.file)
-        return f"https://antapi.pythonanywhere.com/media/{str(self.file)}"
+        # return f"https://antapi.pythonanywhere.com/media/{str(self.file)}"
 
 
 class FoodItem(models.Model):
