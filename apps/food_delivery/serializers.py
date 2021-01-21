@@ -17,6 +17,7 @@ class FoodItemSerializer(serializers.ModelSerializer):
         fields ='__all__'
 
     def to_representation(self, instance):
+        rep = super().to_representation(instance)
         rep['avatar'] = FoodAvatarSerializer(instance.avatar).data
         return rep
 
