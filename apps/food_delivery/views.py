@@ -39,7 +39,10 @@ class CreateFoodItem(generics.CreateAPIView):
     serializer_class = FoodItemSerializer
 
     def create(self, request, *args, **kwargs):
-        # name = request.data.get('name', None)
+        avatar_id = request.data.get('avatar', None)
+        
+        fooditem_qs = FoodItem.objects.filter().order_by('-id').first()
+        fooditem_qs.update(avatar=avatar_id)
         
 
         serializer = FoodItemSerializer(data=request.data)
@@ -88,9 +91,5 @@ class CreateFoodAvatar(generics.CreateAPIView):
     parser_classes = [MultiPartParser, FormParser]
     queryset = FoodAvatar.objects.all()
     serializer_class = FoodAvatarSerializer
-
-    def create(self, request, *args, **kwargs):
-        avatar_id = request.data.get('avatar', None)
-        
 
     
