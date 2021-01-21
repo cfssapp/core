@@ -10,6 +10,7 @@ class FoodAvatarSerializer(serializers.ModelSerializer):
 class FoodItemSerializer(serializers.ModelSerializer):
     
     # avatar = FoodAvatarSerializer(read_only=True)
+    avatar = serializers.CharField(source='avatar.file')
 
     class Meta:
         model = FoodItem

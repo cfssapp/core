@@ -13,7 +13,7 @@ class FoodAvatar(models.Model):
 
 
 class FoodItem(models.Model):
-    avatar = models.ForeignKey('FoodAvatar.file', on_delete=models.CASCADE, blank=True, null=True)
+    avatar = models.ForeignKey('FoodAvatar', on_delete=models.CASCADE, blank=True, null=True)
     name = models.CharField(max_length=100, default="not set")
     price = models.CharField(max_length=100, default="not set")
     category = models.CharField(max_length=100, default="not set")
