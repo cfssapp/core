@@ -88,3 +88,9 @@ class CreateFoodAvatar(generics.CreateAPIView):
     parser_classes = [MultiPartParser, FormParser]
     queryset = FoodAvatar.objects.all()
     serializer_class = FoodAvatarSerializer
+
+    def create(self, request, *args, **kwargs):
+        avatar_id = request.data.get('avatar', None)
+        
+
+    
