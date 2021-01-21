@@ -2,13 +2,13 @@ from rest_framework import serializers
 from .models import FoodItem, FoodOrder, FoodAvatar
 
 class FoodAvatarSerializer(serializers.ModelSerializer):
-    
+    file = serializers.ImageField(required=False, max_length=None, allow_empty_file=True, use_url=True)
     class Meta:
         model = FoodAvatar
         fields ='__all__'
 
 class FoodItemSerializer(serializers.ModelSerializer):
-    avatar = serializers.ImageField(required=False, max_length=None, allow_empty_file=True, use_url=True)
+    avatar = FoodAvatarSerializer()
 
     class Meta:
         model = FoodItem
