@@ -9,18 +9,18 @@ class FoodAvatarSerializer(serializers.ModelSerializer):
 
 class FoodItemSerializer(serializers.ModelSerializer):
     
-    # avatar = FoodAvatarSerializer(read_only=True)
+    avatar = FoodAvatarSerializer(read_only=True)
     # avatar = serializers.ImageField(source='avatar.file')
 
     class Meta:
         model = FoodItem
         fields ='__all__'
 
-    def to_representation(self, instance):
-        rep = super(FoodItemSerializer, self).to_representation(instance)
-        # rep['avatar'] = FoodAvatarSerializer(instance.avatar.file).data
-        rep['avatar'] = FoodAvatarSerializer(instance.avatar).data
-        return rep
+    # def to_representation(self, instance):
+    #     rep = super(FoodItemSerializer, self).to_representation(instance)
+    #     # rep['avatar'] = FoodAvatarSerializer(instance.avatar.file).data
+    #     rep['avatar'] = FoodAvatarSerializer(instance.avatar).data
+    #     return rep
 
 
 class FoodOrderSerializer(serializers.ModelSerializer):
