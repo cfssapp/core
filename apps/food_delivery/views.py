@@ -42,8 +42,8 @@ class CreateFoodItem(generics.CreateAPIView):
         avatar_id = request.data.get('avatar', None)
         
         avatar_qs = FoodAvatar.objects.filter(id=avatar_id)
-        fooditem_qs = FoodItem.objects.filter().order_by('-id').first().update(avatar=avatar_qs)
-        # fooditem_qs.update(avatar=avatar_id)
+        fooditem_qs = FoodItem.objects.filter().order_by('-id').first()
+        fooditem_qs.update(avatar=avatar_qs)
         
 
         serializer = FoodItemSerializer(data=request.data)
