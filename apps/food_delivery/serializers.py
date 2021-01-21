@@ -11,6 +11,7 @@ class FoodItemSerializer(serializers.ModelSerializer):
     
     # avatar = FoodAvatarSerializer(read_only=True)
     # avatar = serializers.ImageField(source='avatar.file')
+    avatar = serializers.CharField(source='FoodAvatar.file', read_only=True)
 
     class Meta:
         model = FoodItem
