@@ -5,7 +5,7 @@ from django.conf import settings
 
 # Create your models here.
 class FoodAvatar(models.Model):
-    file = models.ImageField(default='default.jpg', upload_to='upload_pics')
+    imagefile = models.ImageField(default='default.jpg', upload_to='upload_pics')
 
     def __str__(self):
         return str(self.id)
