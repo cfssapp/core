@@ -1,8 +1,15 @@
 from rest_framework import serializers
-from .models import FoodItem, FoodOrder
+from .models import FoodItem, FoodOrder, FoodAvatar
+
+class FoodAvatarSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = FoodItem
+        fields ='__all__'
 
 class FoodItemSerializer(serializers.ModelSerializer):
-    
+    avatar = FoodAvatarSerializer()
+
     class Meta:
         model = FoodItem
         fields ='__all__'
