@@ -44,7 +44,7 @@ class CreateFoodItem(generics.CreateAPIView):
         
         avatar_qs = FoodAvatar.objects.filter(id=avatar_id)
         fooditem_qs = FoodItem.objects.filter().order_by('-id').first()
-        fooditem_qs.update(avatar=avatar_qs)
+        # fooditem_qs.update(avatar=avatar_qs)
         fooditem_qs.update(cartadded=True)
         
 
