@@ -4,7 +4,7 @@ from .models import FoodItem, FoodOrder, FoodAvatar
 class FoodAvatarSerializer(serializers.ModelSerializer):
     
     class Meta:
-        model = FoodItem
+        model = FoodAvatar
         fields ='__all__'
 
 class FoodItemSerializer(serializers.ModelSerializer):
