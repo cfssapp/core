@@ -34,15 +34,15 @@ class FoodItemDetail(generics.RetrieveAPIView):
 
 class CreateFoodItem(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    parser_classes = [MultiPartParser, FormParser]
+    # parser_classes = [MultiPartParser, FormParser]
     queryset = FoodItem.objects.all()
     serializer_class = FoodItemSerializer
 
     def create(self, request, *args, **kwargs):
-        # avatar_id = request.data.get('avatar', None)
+        avatar_id = request.data.get('avatar', None)
         
-        # fooditem_qs = FoodItem.objects.filter().order_by('-id').first()
-        # fooditem_qs.update(avatar=avatar_id)
+        fooditem_qs = FoodItem.objects.filter().order_by('-id').first()
+        fooditem_qs.update(avatar=avatar_id)
         
 
         serializer = FoodItemSerializer(data=request.data)
