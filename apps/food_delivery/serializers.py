@@ -20,8 +20,7 @@ class FoodItemSerializer(serializers.ModelSerializer):
         rep = super().to_representation(instance)
         rep['avatar'] = FoodAvatarSerializer(instance.avatar.file).data
         return rep
-
-        # rep['gender'] = GenderSerializer(instance.gender).data
+        
 
 class FoodOrderSerializer(serializers.ModelSerializer):
     items = FoodItemSerializer(many=True, read_only=True)
