@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import FoodItem, FoodOrder
+from .models import FoodItem, FoodOrder, FoodAvatar
 
 # Register your models here.
 admin.site.register(FoodAvatar)
