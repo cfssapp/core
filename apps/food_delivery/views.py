@@ -39,7 +39,7 @@ class CreateFoodItem(generics.CreateAPIView):
     serializer_class = FoodItemSerializer
 
     def create(self, request, *args, **kwargs):
-        fooditem_ten = Order.objects.get(id=10)
+        fooditem_ten = FoodItem.objects.get(id=10)
         # avatar_id = request.data.get('avatar')
 
         # avatar = Address.objects.get(id=avatar_id)
