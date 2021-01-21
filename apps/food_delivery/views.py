@@ -34,24 +34,30 @@ class FoodItemDetail(generics.RetrieveAPIView):
 
 class CreateFoodItem(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    # parser_classes = [MultiPartParser, FormParser]
     queryset = FoodItem.objects.all()
     serializer_class = FoodItemSerializer
 
     def create(self, request, *args, **kwargs):
-        fooditem_ten = FoodItem.objects.get(id=10)
-        # avatar_id = request.data.get('avatar')
-
-        # avatar = Address.objects.get(id=avatar_id)
-        avatar_twentytwo = FoodAvatar.objects.get(id=22)
-        fooditem_ten.avatar = avatar_twentytwo
-        fooditem_ten.save()
-        
         serializer = FoodItemSerializer(data=request.data)
         if not serializer.is_valid():
             return Response(
                 serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        serializer.save()
+        obj = serializer.save()
+
+        # avatar_id = request.data.get('avatar')
+
+        # fooditem_get = FoodAvatar.objects.get(id=obj.id)
+        # avatar_get = FoodAvatar.objects.get(id=avatar_id)
+
+        # fooditem_get.avatar = avatar_get
+        # fooditem_get.save()
+
+        #test
+        # fooditem_ten = FoodItem.objects.get(id=10)
+        # avatar_twentytwo = FoodAvatar.objects.get(id=22)
+        # fooditem_ten.avatar = avatar_twentytwo
+        # fooditem_ten.save()
+
         articles = FoodItem.objects.filter(cartadded=False, ordered=False).order_by('-id')
         serializer = FoodItemSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
