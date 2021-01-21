@@ -6,8 +6,8 @@ from rest_framework import generics
 from rest_framework.permissions import SAFE_METHODS, IsAuthenticated, IsAuthenticatedOrReadOnly, BasePermission, IsAdminUser, DjangoModelPermissions
 from rest_framework import viewsets, permissions
 
-from .serializers import FoodItemSerializer, FoodOrderSerializer
-from .models import FoodItem, FoodOrder
+from .serializers import FoodItemSerializer, FoodOrderSerializer, FoodAvatarSerializer
+from .models import FoodItem, FoodOrder, FoodAvatar
 
 from rest_framework.views import APIView
 from django.shortcuts import render, get_object_or_404
@@ -82,3 +82,9 @@ class DeleteFoodItem(generics.RetrieveDestroyAPIView):
         articles = FoodItem.objects.filter(cartadded=False, ordered=False).order_by('-id')
         serializer = FoodItemSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
+
+class CreateFoodAvatar(generics.CreateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    parser_classes = [MultiPartParser, FormParser]
+    queryset = FoodAvatar.objects.all()
+    serializer_class = FoodAvatarSerializer

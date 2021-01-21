@@ -7,4 +7,6 @@ urlpatterns = [
     path('item/create/', views.CreateFoodItem.as_view(), name='fooditemcreate'),
     path('item/edit/<int:pk>/', views.EditFoodItem.as_view(), name='fooditemedit'),
     path('item/delete/<int:pk>/', views.DeleteFoodItem.as_view(), name='fooditemdelete'),
+
+    path('item/avatar/', views.CreateFoodAvatar.as_view(), name='foodavatarcreate'),
 ]
