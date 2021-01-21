@@ -6,9 +6,9 @@ from django.conf import settings
 # Create your models here.
 class FoodItem(models.Model):
     avatar = models.ImageField(default='default.jpg', upload_to='upload_pics')
-    name = models.CharField(max_length=100)
-    price = models.CharField(max_length=100)
-    category = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, default="not set")
+    price = models.CharField(max_length=100, default="not set")
+    category = models.CharField(max_length=100, default="not set")
     cartadded = models.BooleanField(default=False)
     ordered = models.BooleanField(default=False)
     
