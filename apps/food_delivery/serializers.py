@@ -3,7 +3,8 @@ from .models import FoodItem, FoodOrder, FoodAvatar
 
 class FoodAvatarSerializer(serializers.ModelSerializer):
 
-    file = serializers.SerializerMethodField()
+    # file = serializers.SerializerMethodField()
+    file = serializers.Field('FoodAvatar.file')
 
     class Meta:
         model = FoodAvatar
