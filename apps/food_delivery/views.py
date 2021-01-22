@@ -104,8 +104,8 @@ class AddToCartView(APIView):
         fooditem_id = request.data.get('id')
 
         fooditem_get = FoodItem.objects.get(id=fooditem_id)
-        item.update(cartadded=True)
+        fooditem_get.update(cartadded=True)
         
-        articles = Item.objects.filter(cartadded=False, ordered=False).order_by('-id')
-        serializer = ItemSerializer(articles, many=True)
+        articles = FoodItem.objects.filter(cartadded=False, ordered=False).order_by('-id')
+        serializer = FoodItemSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
