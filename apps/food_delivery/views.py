@@ -6,8 +6,8 @@ from rest_framework import generics
 from rest_framework.permissions import SAFE_METHODS, IsAuthenticated, IsAuthenticatedOrReadOnly, BasePermission, IsAdminUser, DjangoModelPermissions
 from rest_framework import viewsets, permissions
 
-from .serializers import FoodItemSerializer, FoodOrderSerializer, FoodAvatarSerializer
-from .models import FoodItem, FoodOrder, FoodAvatar
+from .serializers import FoodItemSerializer, FoodOrderSerializer, FoodAvatarSerializer, AddressSerializer
+from .models import FoodItem, FoodOrder, FoodAvatar, Address
 
 from rest_framework.views import APIView
 from django.shortcuts import render, get_object_or_404
@@ -109,3 +109,10 @@ class AddToCartView(APIView):
         articles = FoodItem.objects.filter(cartadded=False, ordered=False).order_by('-id')
         serializer = FoodItemSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
+
+class AddressList(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = AddressSerializer
+
+    def get_queryset(self):
+        return Address.objects.filter(item_owner=self.request.user, default=True)

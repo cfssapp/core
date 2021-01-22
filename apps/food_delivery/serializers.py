@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import FoodItem, FoodOrder, FoodAvatar
+from .models import FoodItem, FoodOrder, FoodAvatar, Address
 
 class FoodAvatarSerializer(serializers.ModelSerializer):
 
@@ -8,9 +8,7 @@ class FoodAvatarSerializer(serializers.ModelSerializer):
         fields ='__all__'
         # fields = ('file',)
 
-
 class FoodItemSerializer(serializers.ModelSerializer):
-    
     avatar = FoodAvatarSerializer(read_only=True)
 
     class Meta:
@@ -23,4 +21,11 @@ class FoodOrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FoodOrder
+        fields ='__all__'
+
+
+class AddressSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Address
         fields ='__all__'

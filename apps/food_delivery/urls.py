@@ -10,4 +10,5 @@ urlpatterns = [
     path('item/avatar/', views.CreateFoodAvatar.as_view(), name='foodavatarcreate'),
 
     path('add-to-cart/', views.AddToCartView.as_view(), name='foodaddtocart'),
+    path('address/', views.AddressList.as_view(), name='listaddress'),
 ]
