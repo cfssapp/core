@@ -103,7 +103,7 @@ class AddToCartView(APIView):
     def post(self, request, *args, **kwargs):
         fooditem_id = request.data.get('id')
 
-        fooditem_get = FoodItem.objects.get(id=fooditem_id)
+        fooditem_get = FoodItem.objects.filter(id=fooditem_id)
         fooditem_get.update(cartadded=True)
         
         articles = FoodItem.objects.filter(cartadded=False, ordered=False).order_by('-id')
