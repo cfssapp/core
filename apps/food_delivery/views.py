@@ -115,4 +115,4 @@ class AddressList(generics.ListAPIView):
     serializer_class = AddressSerializer
 
     def get_queryset(self):
-        return Address.objects.filter(item_owner=self.request.user, default=True)
+        return Address.objects.filter(user=self.request.user, default=True)
