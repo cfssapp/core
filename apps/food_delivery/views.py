@@ -99,4 +99,13 @@ class CreateFoodAvatar(generics.CreateAPIView):
     queryset = FoodAvatar.objects.all()
     serializer_class = FoodAvatarSerializer
 
-    
+class AddToCartView(APIView):
+    def post(self, request, *args, **kwargs):
+        fooditem_id = request.data.get('id')
+
+        fooditem_get = FoodItem.objects.get(id=fooditem_id)
+        item.update(cartadded=True)
+        
+        articles = Item.objects.filter(cartadded=False, ordered=False).order_by('-id')
+        serializer = ItemSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
