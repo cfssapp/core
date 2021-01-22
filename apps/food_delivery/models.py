@@ -38,3 +38,13 @@ class FoodOrder(models.Model):
         return str(self.courier)
         
 
+class Address(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='addressorder', default=1)
+    street_name = models.CharField(max_length=100, default="not set")
+    state = models.CharField(max_length=100, default="not set")                          
+    postal_code = models.CharField(max_length=100, default="not set")
+    default = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.username
