@@ -44,13 +44,13 @@ class CreateFoodItem(generics.CreateAPIView):
                 serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         obj = serializer.save()
 
-        # avatar_id = request.data.get('avatar')
+        avatar_id = request.data.get('avatar')
 
-        # fooditem_get = FoodAvatar.objects.get(id=obj.id)
-        # avatar_get = FoodAvatar.objects.get(id=avatar_id)
+        fooditem_get = FoodAvatar.objects.get(id=obj.id)
+        avatar_get = FoodAvatar.objects.get(id=avatar_id)
 
-        # fooditem_get.avatar = avatar_get
-        # fooditem_get.save()
+        fooditem_get.avatar = avatar_get
+        fooditem_get.save()
 
         #test
         # fooditem_ten = FoodItem.objects.get(id=10)
