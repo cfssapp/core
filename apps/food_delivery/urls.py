@@ -14,5 +14,6 @@ urlpatterns = [
     path('remove-from-cart/', views.RemoveFromCartView.as_view(), name='foodremovefromcart'),
     
     path('address/', views.AddressList.as_view(), name='listaddress'),
+    path('address/create/', views.CreateAddress.as_view(), name='addresscreate'),
     path('address/edit/<int:pk>/', views.EditAddress.as_view(), name='addressedit'),
 ]
