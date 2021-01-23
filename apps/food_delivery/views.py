@@ -133,6 +133,22 @@ class AddressList(generics.ListAPIView):
 
     def get_queryset(self):
         return Address.objects.filter(user=self.request.user, default=True)
+
+
+class CreateAddress(generics.CreateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = AddressSerializer
+    queryset = Address.objects.all()
+
+    def create(self, request, *args, **kwargs):
+        serializer = AddressSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(
+                serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer.save(user=self.request.user)
+        articles = Address.objects.filter(user=self.request.user, default=True)
+        serializer = AddressSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
         
 
 class EditAddress(generics.UpdateAPIView):
