@@ -26,6 +26,7 @@ class FoodItemList(generics.ListAPIView):
     def get_queryset(self):
         return FoodItem.objects.filter(cartadded=False, ordered=False).order_by('-id')
 
+
 class FoodItemDetail(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated]
     queryset = FoodItem.objects.all()
@@ -81,6 +82,7 @@ class EditFoodItem(generics.UpdateAPIView):
         serializer = FoodItemSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
 
+
 class DeleteFoodItem(generics.RetrieveDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = FoodItemSerializer
@@ -93,11 +95,13 @@ class DeleteFoodItem(generics.RetrieveDestroyAPIView):
         serializer = FoodItemSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
 
+
 class CreateFoodAvatar(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     parser_classes = [MultiPartParser, FormParser]
     queryset = FoodAvatar.objects.all()
     serializer_class = FoodAvatarSerializer
+
 
 class AddToCartView(APIView):
     def post(self, request, *args, **kwargs):
@@ -110,9 +114,18 @@ class AddToCartView(APIView):
         serializer = FoodItemSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
 
+
 class AddressList(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = AddressSerializer
 
     def get_queryset(self):
         return Address.objects.filter(user=self.request.user, default=True)
+
+
+class FoodCartList(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = FoodItemSerializer
+
+    def get_queryset(self):
+        return FoodItem.objects.filter(cartadded=True, ordered=False).order_by('-id')
