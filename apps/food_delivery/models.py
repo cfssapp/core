@@ -44,7 +44,7 @@ class Address(models.Model):
     street_name = models.CharField(max_length=100, default="not set")
     state = models.CharField(max_length=100, default="not set")                          
     postal_code = models.CharField(max_length=100, default="not set")
-    default = models.BooleanField(default=False)
+    default = models.BooleanField(default=True)
 
     def __str__(self):
         return self.user.user_name
