@@ -115,6 +115,18 @@ class AddToCartView(APIView):
         return JsonResponse(serializer.data, safe=False)
 
 
+class RemoveFromCartView(APIView):
+    def post(self, request, *args, **kwargs):
+        fooditem_id = request.data.get('id')
+
+        fooditem_get = FoodItem.objects.filter(id=fooditem_id)
+        fooditem_get.update(cartadded=False)
+        
+        articles = FoodItem.objects.filter(cartadded=True, ordered=False).order_by('-id')
+        serializer = FoodItemSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+
 class AddressList(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = AddressSerializer
