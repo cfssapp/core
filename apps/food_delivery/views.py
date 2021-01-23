@@ -133,6 +133,25 @@ class AddressList(generics.ListAPIView):
 
     def get_queryset(self):
         return Address.objects.filter(user=self.request.user, default=True)
+        
+
+class EditAddress(generics.UpdateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = AddressSerializer
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            instance._prefetched_objects_cache = {}
+
+        articles = Address.objects.filter(user=self.request.user, default=True)
+        serializer = AddressSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
 
 
 class FoodCartList(generics.ListAPIView):
