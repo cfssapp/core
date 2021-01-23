@@ -138,6 +138,7 @@ class AddressList(generics.ListAPIView):
 class EditAddress(generics.UpdateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = AddressSerializer
+    queryset = Address.objects.all()
 
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
