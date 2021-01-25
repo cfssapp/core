@@ -23,6 +23,7 @@ class FoodItem(models.Model):
     category = models.CharField(max_length=100, default="not set")
     cartadded = models.BooleanField(default=False)
     ordered = models.BooleanField(default=False)
+    order_id = models.CharField(max_length=100, blank=True, null=True)
     
     def __str__(self):
         return self.name

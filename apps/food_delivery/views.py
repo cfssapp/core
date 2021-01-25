@@ -200,6 +200,18 @@ class AddToOrderView(APIView):
             shipping_address=shipping_id,
         )
 
+        order_qs = FoodOrder.objects.filter(user=self.request.user).order_by('-id').first()
+        order_id = order_qs.order_id
+
+        cartadded_items = FoodItem.objects.filter(cartadded=True)
+        for item in cartadded_items:
+            order.items.add(item)
+        cartadded_items.update(order_id=order_id)
+        cartadded_items.update(ordered=True)
+        cartadded_items.update(cartadded=False)
+        for item in cartadded_items:
+            item.save()
+
         articles = FoodItem.objects.filter(cartadded=True, ordered=False).order_by('-id')
         serializer = FoodItemSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
