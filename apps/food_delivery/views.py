@@ -8,6 +8,7 @@ from rest_framework import viewsets, permissions
 
 from .serializers import FoodItemSerializer, FoodOrderSerializer, FoodAvatarSerializer, AddressSerializer
 from .models import FoodItem, FoodOrder, FoodAvatar, Address
+from .myclass import OrderCode
 
 from rest_framework.views import APIView
 from django.shortcuts import render, get_object_or_404
