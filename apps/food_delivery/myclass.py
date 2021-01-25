@@ -21,6 +21,6 @@ class OrderCode:
         self.serialnum += '%04d' % (ran_list)
 
 
-if __name__ == '__main__':
-    obj = OrderCode()
-    print(obj.serialnum)
+# if __name__ == '__main__':
+#     obj = OrderCode()
+#     print(obj.serialnum)
