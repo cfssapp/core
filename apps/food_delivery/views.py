@@ -188,6 +188,8 @@ class FoodOrderList(generics.ListAPIView):
         return FoodOrder.objects.filter(user=self.request.user).order_by('-id')
 
 
+order_no = OrderCode()
+
 class AddToOrderView(APIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = FoodOrderSerializer
@@ -195,8 +197,6 @@ class AddToOrderView(APIView):
 
     def post(self, request, *args, **kwargs):
         shipping_id = request.data.get('shipping_id')
-
-        order_no = OrderCode()
 
         order = FoodOrder.objects.create(
             order_id = order_no,
