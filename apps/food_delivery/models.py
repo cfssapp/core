@@ -1,7 +1,8 @@
-import uuid
 from django.db import models
 from django.conf import settings
 
+from django.db.models.signals import pre_save
+from .myclass import unique_order_no_generator
 
 # Create your models here.
 class FoodAvatar(models.Model):
@@ -37,7 +38,11 @@ class FoodOrder(models.Model):
     
     def __str__(self):
         return str(self.courier)
+
+def pre_save_create_order_id(sender, instance, *args, **kwargs):
+    instance.order_id = unique_order_no_generator(instance)
         
+pre_save.connect(pre_save_create_order_id, sender=FoodOrder)
 
 class Address(models.Model):
     user = models.ForeignKey(
