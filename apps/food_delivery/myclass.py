@@ -5,4 +5,6 @@ import random
 class OrderCode:
     order_no = "K123"
 
-return order_no
+if __name__ == '__main__':
+    obj = OrderCode()
+    print(obj)
