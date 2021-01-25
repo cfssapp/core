@@ -215,3 +215,23 @@ class AddToOrderView(APIView):
         articles = FoodItem.objects.filter(cartadded=True, ordered=False).order_by('-id')
         serializer = FoodItemSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
+
+
+class DeleteOrderView(generics.RetrieveDestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = FoodOrderSerializer
+    queryset = FoodOrder.objects.all()
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        order_id = instance.unique_id
+        self.perform_destroy(instance)
+
+        ordered_items = FoodItem.objects.filter(order_id=order_id)
+        ordered_items.update(ordered=False)
+        for item in ordered_items:
+            item.save()
+
+        articles = FoodOrder.objects.filter(user=self.request.user).order_by('-id')
+        serializer = FoodOrderSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
