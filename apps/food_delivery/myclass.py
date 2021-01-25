@@ -2,11 +2,6 @@ from datetime import datetime
 import random
 
 
-class OrderCode:
-
-    def __init__(self):
-        self.serialnum = 'K123'
-
-if __name__ == '__main__':
-    obj = OrderCode()
-    print(obj.serialnum)
+def unique_order_no_generator(instance):
+    order_new_id = "K123"
+    return order_new_id

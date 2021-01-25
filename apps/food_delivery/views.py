@@ -8,7 +8,7 @@ from rest_framework import viewsets, permissions
 
 from .serializers import FoodItemSerializer, FoodOrderSerializer, FoodAvatarSerializer, AddressSerializer
 from .models import FoodItem, FoodOrder, FoodAvatar, Address
-from .myclass import OrderCode
+from .myclass import unique_order_no_generator
 
 from rest_framework.views import APIView
 from django.shortcuts import render, get_object_or_404
@@ -188,8 +188,6 @@ class FoodOrderList(generics.ListAPIView):
         return FoodOrder.objects.filter(user=self.request.user).order_by('-id')
 
 
-order_no = OrderCode()
-
 class AddToOrderView(APIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = FoodOrderSerializer
@@ -197,6 +195,8 @@ class AddToOrderView(APIView):
 
     def post(self, request, *args, **kwargs):
         shipping_id = request.data.get('shipping_id')
+
+        order_no = unique_order_no_generator(instance)
 
         order = FoodOrder.objects.create(
             order_id = order_no,
