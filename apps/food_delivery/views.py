@@ -196,8 +196,10 @@ class AddToOrderView(APIView):
     def post(self, request, *args, **kwargs):
         shipping_id = request.data.get('shipping_id')
 
+        order_no = OrderCode()
+
         order = FoodOrder.objects.create(
-            order_id = OrderCode(),
+            order_id = order_no,
             user=self.request.user,
             shipping_address=shipping_id,
         )
