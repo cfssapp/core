@@ -37,7 +37,7 @@ class FoodOrder(models.Model):
     courier = models.CharField(max_length=100, default="not set")
     
     def __str__(self):
-        return str(self.courier)
+        return str(self.order_id)
 
 def pre_save_create_order_id(sender, instance, *args, **kwargs):
     instance.order_id = unique_order_no_generator(instance)
