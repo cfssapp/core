@@ -28,6 +28,7 @@ class FoodItem(models.Model):
 
 
 class FoodOrder(models.Model):
+    order_id = models.CharField(max_length=100, default="not set")
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='orderfood', default=1)
     items = models.ManyToManyField(FoodItem)
