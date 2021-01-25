@@ -178,3 +178,30 @@ class FoodCartList(generics.ListAPIView):
 
     def get_queryset(self):
         return FoodItem.objects.filter(cartadded=True, ordered=False).order_by('-id')
+
+
+class FoodOrderList(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = FoodOrderSerializer
+
+    def get_queryset(self):
+        return FoodOrder.objects.filter(user=self.request.user).order_by('-id')
+
+
+class AddToOrderView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = FoodOrderSerializer
+    queryset = FoodOrder.objects.all()
+
+    def post(self, request, *args, **kwargs):
+        shipping_id = request.data.get('shipping_id')
+
+        order = Order.objects.create(
+            order_id = OrderCode(),
+            user=self.request.user,
+            shipping_address=shipping_id,
+        )
+
+        articles = FoodItem.objects.filter(cartadded=True, ordered=False).order_by('-id')
+        serializer = FoodItemSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)

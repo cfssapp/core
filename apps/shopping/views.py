@@ -124,8 +124,7 @@ class OrderList(generics.ListAPIView):
     serializer_class = OrderSerializer
 
     def get_queryset(self):
-        user = self.request.user
-        return Order.objects.filter(user=user).order_by('-id')
+        return Order.objects.filter(user=self.request.user).order_by('-id')
 
 
 class AddToOrderView(APIView):
