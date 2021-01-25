@@ -44,6 +44,7 @@ def pre_save_create_order_id(sender, instance, *args, **kwargs):
         
 pre_save.connect(pre_save_create_order_id, sender=FoodOrder)
 
+
 class Address(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='addressorder', default=1)
