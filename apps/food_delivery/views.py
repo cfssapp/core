@@ -196,12 +196,14 @@ class AddToOrderView(APIView):
         # shipping_id = request.data.get('id')
         shipping_address = Address.objects.get(id=13)
 
+        parts = (1, 'a', 'b', 2, 'c', 'd', None, 'f')
+        testjoin = ' '.join(str(part) for part in parts if part is not None)
+
         order = FoodOrder.objects.create(
             user=self.request.user,
-            shipping_address=shipping_address.street_name,
+            # shipping_address=shipping_address.street_name,
+            shipping_address=testjoin,
         )
-
-        
 
         order_qs = FoodOrder.objects.filter(user=self.request.user).order_by('-id').first()
         order_id = order_qs.order_id
