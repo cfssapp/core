@@ -182,6 +182,8 @@ class FoodCartList(generics.ListAPIView):
 class FoodOrderList(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = FoodOrderSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['=order_id']
 
     def get_queryset(self):
         return FoodOrder.objects.filter(user=self.request.user).order_by('-id')
