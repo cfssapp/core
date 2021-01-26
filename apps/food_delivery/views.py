@@ -193,11 +193,11 @@ class AddToOrderView(APIView):
     queryset = FoodOrder.objects.all()
 
     def post(self, request, *args, **kwargs):
-        shipping_id = request.data.get('shipping_id')
+        # shipping_id = request.data.get('id')
 
         order = FoodOrder.objects.create(
             user=self.request.user,
-            shipping_address=shipping_id,
+            # shipping_address=shipping_id,
         )
 
         order_qs = FoodOrder.objects.filter(user=self.request.user).order_by('-id').first()
