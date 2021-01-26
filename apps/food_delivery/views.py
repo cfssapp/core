@@ -184,7 +184,7 @@ class FoodOrderList(generics.ListAPIView):
     queryset = FoodOrder.objects.all()
     serializer_class = FoodOrderSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['=order_id']
+    search_fields = ['^order_id']
 
     def get_queryset(self):
         return FoodOrder.objects.filter(user=self.request.user).order_by('-id')
