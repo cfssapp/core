@@ -224,7 +224,7 @@ class DeleteOrderView(generics.RetrieveDestroyAPIView):
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
-        order_id = instance.unique_id
+        order_id = instance.order_id
         self.perform_destroy(instance)
 
         ordered_items = FoodItem.objects.filter(order_id=order_id)
