@@ -12,7 +12,7 @@ class FoodAvatarSerializer(serializers.ModelSerializer):
 class CsvSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = FoodAvatar
+        model = Csv
         fields ='__all__'
         # fields = ('file',)
 
