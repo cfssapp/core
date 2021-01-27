@@ -56,3 +56,12 @@ class Address(models.Model):
 
     def __str__(self):
         return self.user.user_name
+
+
+class Csv(models.Model):
+    file_name = models.FileField(upload_to='upload_pics')
+    uploaded = models.DateTimeField(auto_now_add=True)
+    activated = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"File id: {self.id}"
