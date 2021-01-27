@@ -9,6 +9,8 @@ urlpatterns = [
     path('item/delete/<int:pk>/', views.DeleteFoodItem.as_view(), name='fooditemdelete'),
     path('item/avatar/', views.CreateFoodAvatar.as_view(), name='foodavatarcreate'),
 
+    path('csv/', views.UploadFileView.as_view(), name='fileupload'),
+
     path('cart/', views.FoodCartList.as_view(), name='listfoodcart'),
     path('add-to-cart/', views.AddToCartView.as_view(), name='foodaddtocart'),
     path('remove-from-cart/', views.RemoveFromCartView.as_view(), name='foodremovefromcart'),

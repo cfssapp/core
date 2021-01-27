@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import FoodItem, FoodOrder, FoodAvatar, Address
+from .models import FoodItem, FoodOrder, FoodAvatar, Address, Csv
 
 class FoodAvatarSerializer(serializers.ModelSerializer):
 
@@ -7,6 +7,15 @@ class FoodAvatarSerializer(serializers.ModelSerializer):
         model = FoodAvatar
         fields ='__all__'
         # fields = ('file',)
+
+
+class CsvSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = FoodAvatar
+        fields ='__all__'
+        # fields = ('file',)
+
 
 class FoodItemSerializer(serializers.ModelSerializer):
     avatar = FoodAvatarSerializer(read_only=True)

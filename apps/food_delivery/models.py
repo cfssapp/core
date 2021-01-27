@@ -14,6 +14,15 @@ class FoodAvatar(models.Model):
         # return f"https://antapi.pythonanywhere.com/media/{str(self.file)}"
 
 
+class Csv(models.Model):
+    file_name = models.FileField(upload_to='upload_pics')
+    uploaded = models.DateTimeField(auto_now_add=True)
+    activated = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"File id: {self.id}"
+
+
 class FoodItem(models.Model):
     # avatar = models.ForeignKey('FoodAvatar', on_delete=models.CASCADE, blank=True, null=True)
     avatar = models.OneToOneField(FoodAvatar, on_delete=models.CASCADE, blank=True, null=True)
@@ -56,12 +65,3 @@ class Address(models.Model):
 
     def __str__(self):
         return self.user.user_name
-
-
-class Csv(models.Model):
-    file_name = models.FileField(upload_to='upload_pics')
-    uploaded = models.DateTimeField(auto_now_add=True)
-    activated = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f"File id: {self.id}"
