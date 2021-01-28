@@ -258,3 +258,16 @@ class UploadFileView(generics.CreateAPIView):
     parser_classes = [MultiPartParser, FormParser]
     queryset = Csv.objects.all()
     serializer_class = CsvSerializer
+
+
+def fake_data(request):
+	api_urls = [
+  {
+      "id": "000000001",
+      "avatar": "https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png",
+      "title": "你收到了 14 份新周报",
+      "datetime": "2017-08-09",
+      "type": "notification"
+  },
+]
+	return JsonResponse(api_urls, safe=False)
