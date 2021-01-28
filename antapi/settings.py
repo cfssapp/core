@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'apps.shopping',
     'apps.food_delivery',
 
+    'import_export',
     'rest_framework',
     'corsheaders',
     'rest_framework_simplejwt.token_blacklist',
