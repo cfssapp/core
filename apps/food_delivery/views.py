@@ -69,11 +69,14 @@ class EditFoodItem(generics.UpdateAPIView):
     queryset = FoodItem.objects.all()
 
     def update(self, request, *args, **kwargs):
+        avatar_id = request.data.get('avatar')
+        avatar_get = FoodAvatar.objects.get(id=avatar_id)
+
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
-        self.perform_update(serializer)
+        obj = self.perform_update(serializer)
 
         if getattr(instance, '_prefetched_objects_cache', None):
             instance._prefetched_objects_cache = {}
