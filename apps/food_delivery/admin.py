@@ -12,7 +12,7 @@ class FoodItemResource(resources.ModelResource):
         model = FoodItem
     
     def get_queryset(self):
-        return self.FoodItem.objects.order_by('id') 
+        return self._meta.model.objects.order_by('id') 
 
 
 class FoodItemAdmin(ImportExportModelAdmin):
