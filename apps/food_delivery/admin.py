@@ -5,15 +5,10 @@ from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
 
-
 class FoodItemResource(resources.ModelResource):
 
     class Meta:
         model = FoodItem
-        # ordering = ['id']
-    
-    # def get_queryset(self):
-    #     return self._meta.model.objects.order_by('id') 
 
 
 class FoodItemAdmin(ImportExportModelAdmin):
