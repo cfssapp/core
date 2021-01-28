@@ -79,7 +79,7 @@ class EditFoodItem(generics.UpdateAPIView):
         
         obj = self.perform_update(serializer)
 
-        fooditem_get = FoodItem.objects.get(id=36)
+        fooditem_get = FoodItem.objects.get(id=10)
         fooditem_get.avatar = avatar_get
         fooditem_get.save()
 
