@@ -263,11 +263,98 @@ class UploadFileView(generics.CreateAPIView):
 def fake_data(request):
 	api_urls = [
   {
-      "id": "000000001",
-      "avatar": "https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png",
-      "title": "你收到了 14 份新周报",
-      "datetime": "2017-08-09",
-      "type": "notification"
-  },
+    "salesData": [
+        {
+            "x": "1月",
+            "y": 203
+        },
+        {
+            "x": "2月",
+            "y": 1163
+        },
+        {
+            "x": "3月",
+            "y": 697
+        },
+        {
+            "x": "4月",
+            "y": 773
+        },
+        {
+            "x": "5月",
+            "y": 754
+        },
+        {
+            "x": "6月",
+            "y": 286
+        },
+        {
+            "x": "7月",
+            "y": 429
+        },
+        {
+            "x": "8月",
+            "y": 1170
+        },
+        {
+            "x": "9月",
+            "y": 797
+        },
+        {
+            "x": "10月",
+            "y": 1076
+        },
+        {
+            "x": "11月",
+            "y": 210
+        },
+        {
+            "x": "12月",
+            "y": 881
+        }
+    ],
+    "offlineData": [
+        {
+            "name": "Stores 0",
+            "cvr": 0.9
+        },
+        {
+            "name": "Stores 1",
+            "cvr": 0.5
+        },
+        {
+            "name": "Stores 2",
+            "cvr": 0.5
+        },
+        {
+            "name": "Stores 3",
+            "cvr": 0.9
+        },
+        {
+            "name": "Stores 4",
+            "cvr": 0.2
+        },
+        {
+            "name": "Stores 5",
+            "cvr": 0.5
+        },
+        {
+            "name": "Stores 6",
+            "cvr": 0.8
+        },
+        {
+            "name": "Stores 7",
+            "cvr": 0.8
+        },
+        {
+            "name": "Stores 8",
+            "cvr": 0.5
+        },
+        {
+            "name": "Stores 9",
+            "cvr": 0.8
+        }
+    ],
+}
 ]
 	return JsonResponse(api_urls, safe=False)
