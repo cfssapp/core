@@ -33,6 +33,9 @@ class FoodItem(models.Model):
     cartadded = models.BooleanField(default=False)
     ordered = models.BooleanField(default=False)
     order_id = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        ordering = ['id']
     
     def __str__(self):
         return self.name
