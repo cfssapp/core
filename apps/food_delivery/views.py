@@ -71,15 +71,15 @@ class EditFoodItem(generics.UpdateAPIView):
     def update(self, request, *args, **kwargs):
         avatar_id = request.data.get('avatar')
         avatar_get = FoodAvatar.objects.get(id=avatar_id)
+        fooditem_id = request.data.get('id')
 
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
-        
-        obj = self.perform_update(serializer)
+        self.perform_update(serializer)
 
-        fooditem_get = FoodItem.objects.get(id=10)
+        fooditem_get = FoodItem.objects.get(id=fooditem_id)
         fooditem_get.avatar = avatar_get
         fooditem_get.save()
 
