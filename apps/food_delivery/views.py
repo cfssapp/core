@@ -261,7 +261,7 @@ class UploadFileView(generics.CreateAPIView):
 
 
 def fake_data(request):
-	api_urls = [
+	api_urls = "
   {
     "visitData": [
         {
@@ -1061,5 +1061,5 @@ def fake_data(request):
         }
     ]
 }
-]
+"
 	return JsonResponse(api_urls, safe=False)
