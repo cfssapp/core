@@ -23,5 +23,6 @@ urlpatterns = [
 	path('add-to-order/', views.AddToOrderView.as_view(), name='foodaddtoorder'),
     path('order/delete/<int:pk>/', views.DeleteOrderView.as_view(), name='foodorderdelete'),
 
-    path('fake-data/', views.fake_data, name="notices_list"),
+    # path('fake-data/', views.fake_data, name="notices_list"),
+    path('fake-data/', views.fake_data.as_view(), name="datafake"),
 ]

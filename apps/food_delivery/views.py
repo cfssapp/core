@@ -6,8 +6,8 @@ from rest_framework import generics
 from rest_framework.permissions import SAFE_METHODS, IsAuthenticated, IsAuthenticatedOrReadOnly, BasePermission, IsAdminUser, DjangoModelPermissions
 from rest_framework import viewsets, permissions
 
-from .serializers import FoodItemSerializer, FoodOrderSerializer, FoodAvatarSerializer, AddressSerializer, CsvSerializer
-from .models import FoodItem, FoodOrder, FoodAvatar, Address, Csv
+from .serializers import FoodItemSerializer, FoodOrderSerializer, FoodAvatarSerializer, AddressSerializer, CsvSerializer, SalesDataSerializer, FakeDataSerializer
+from .models import FoodItem, FoodOrder, FoodAvatar, Address, Csv, SalesData, FakeData
 
 from rest_framework.views import APIView
 from django.shortcuts import render, get_object_or_404
@@ -260,7 +260,7 @@ class UploadFileView(generics.CreateAPIView):
     serializer_class = CsvSerializer
 
 
-def fake_data(request):
+def fake_data2(request):
 	api_urls = {
     "salesData": [
         {
@@ -315,3 +315,15 @@ def fake_data(request):
 }
 
 	return JsonResponse(api_urls, safe=False)
+
+
+class fake_data(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = FakeData.objects.all()
+    serializer_class = FakeDataSerializer
+
+
+    def get_queryset(self):
+        return FakeData.objects.filter().order_by('-id')
+
+
