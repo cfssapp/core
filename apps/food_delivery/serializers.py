@@ -42,7 +42,6 @@ class AddressSerializer(serializers.ModelSerializer):
 
 # Fake data
 class SalesDataSerializer(serializers.ModelSerializer):
-    y = IntegerField()
 
     class Meta:
         model = SalesData
