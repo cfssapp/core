@@ -52,4 +52,4 @@ class FakeDataSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FakeData
-        fields = ('SalesData',)
+        fields = ('salesData',)
