@@ -230,7 +230,6 @@ class AddToOrderView(APIView):
 
         salesdata_old = SalesData.objects.get(id=1)
         new_y = salesdata_old.y + 1
-
         salesdata_get = SalesData.objects.filter(id=1)
         salesdata_get.update(y=new_y)
 
@@ -253,6 +252,11 @@ class DeleteOrderView(generics.RetrieveDestroyAPIView):
         ordered_items.update(ordered=False)
         for item in ordered_items:
             item.save()
+
+        salesdata_old = SalesData.objects.get(id=1)
+        new_y = salesdata_old.y - 1
+        salesdata_get = SalesData.objects.filter(id=1)
+        salesdata_get.update(y=new_y)
 
         articles = FoodOrder.objects.filter(user=self.request.user).order_by('-id')
         serializer = FoodOrderSerializer(articles, many=True)
