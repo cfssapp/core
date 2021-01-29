@@ -262,7 +262,7 @@ class UploadFileView(generics.CreateAPIView):
 
 def fake_data(request):
 	api_urls = [
-  
+  {
     "visitData": [
         {
             "x": "2021-01-29",
@@ -1060,6 +1060,6 @@ def fake_data(request):
             "value": 7
         }
     ]
-
+}
 ]
 	return JsonResponse(api_urls, safe=False)
