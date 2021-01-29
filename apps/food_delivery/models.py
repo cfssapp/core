@@ -74,6 +74,9 @@ class SalesData(models.Model):
     x = models.CharField(max_length=100, default="not set")
     y = models.CharField(max_length=100, default="not set")
 
+    class Meta:
+        ordering = ['id']
+
     def __str__(self):
         return f"id: {self.id}"
 

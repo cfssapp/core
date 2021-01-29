@@ -14,11 +14,21 @@ class FoodItemResource(resources.ModelResource):
 class FoodItemAdmin(ImportExportModelAdmin):
     resource_class = FoodItemResource
 
+
+class SalesDataResource(resources.ModelResource):
+
+    class Meta:
+        model = SalesData
+
+
+class SalesDataAdmin(ImportExportModelAdmin):
+    resource_class = SalesDataResource
+
 admin.site.register(FoodAvatar)
 admin.site.register(FoodItem, FoodItemAdmin)
 admin.site.register(FoodOrder)
 admin.site.register(Address)
 admin.site.register(Csv)
 
-admin.site.register(SalesData)
+admin.site.register(SalesData, SalesDataAdmin)
 admin.site.register(FakeData)
