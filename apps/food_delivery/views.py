@@ -228,6 +228,9 @@ class AddToOrderView(APIView):
         for item in cartadded_items:
             item.save()
 
+        jan = SalesData.objects.get(id=1)
+        jan.y = 10
+
         articles = FoodItem.objects.filter(cartadded=True, ordered=False).order_by('-id')
         serializer = FoodItemSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
