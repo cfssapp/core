@@ -48,7 +48,7 @@ class SalesDataSerializer(serializers.ModelSerializer):
         fields ='__all__'
 
 class FakeDataSerializer(serializers.ModelSerializer):
-    SalesData = SalesDataSerializer(read_only=True)
+    SalesData = SalesDataSerializer(many=True, read_only=True)
 
     class Meta:
         model = FakeData
