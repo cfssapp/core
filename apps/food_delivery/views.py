@@ -7,7 +7,7 @@ from rest_framework.permissions import SAFE_METHODS, IsAuthenticated, IsAuthenti
 from rest_framework import viewsets, permissions
 
 from .serializers import FoodItemSerializer, FoodOrderSerializer, FoodAvatarSerializer, AddressSerializer, CsvSerializer, SalesDataSerializer, FakeDataSerializer
-from .models import FoodItem, FoodOrder, FoodAvatar, Address, Csv, SalesData, FakeData
+from .models import FoodItem, FoodOrder, FoodAvatar, Address, Csv, SalesData, FakeData2
 
 from rest_framework.views import APIView
 from django.shortcuts import render, get_object_or_404
@@ -319,15 +319,15 @@ def fake_data2(request):
 
 class fake_data(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    queryset = FakeData.objects.all()
+    queryset = FakeData2.objects.all()
     serializer_class = FakeDataSerializer
 
 
     def get_queryset(self):
-        return FakeData.objects.filter().order_by('-id')
+        return FakeData2.objects.filter().order_by('-id')
 
 
 class FakeDataDetail(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    queryset = FakeData.objects.all()
+    queryset = FakeData2.objects.all()
     serializer_class = FakeDataSerializer

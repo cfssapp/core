@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import FoodItem, FoodOrder, FoodAvatar, Address, Csv, SalesData, FakeData
+from .models import FoodItem, FoodOrder, FoodAvatar, Address, Csv, SalesData, FakeData2
 
 class FoodAvatarSerializer(serializers.ModelSerializer):
 
@@ -51,5 +51,5 @@ class FakeDataSerializer(serializers.ModelSerializer):
     salesData = SalesDataSerializer(many=True, read_only=True)
 
     class Meta:
-        model = FakeData
+        model = FakeData2
         fields = ('salesData',)
