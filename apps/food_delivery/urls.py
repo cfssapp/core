@@ -25,4 +25,5 @@ urlpatterns = [
 
     # path('fake-data/', views.fake_data, name="notices_list"),
     path('fake-data/', views.fake_data.as_view(), name="datafake"),
+    path('fake-data/<int:pk>/', views.FakeDataDetail.as_view(), name='detaildatafake'),
 ]

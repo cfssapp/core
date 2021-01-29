@@ -327,3 +327,7 @@ class fake_data(generics.ListAPIView):
         return FakeData.objects.filter().order_by('-id')
 
 
+class FakeDataDetail(generics.RetrieveAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = FakeData.objects.all()
+    serializer_class = FakeDataSerializer
