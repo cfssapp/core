@@ -76,3 +76,10 @@ class SalesData(models.Model):
 
     def __str__(self):
         return f"id: {self.id}"
+
+
+class FakeData(models.Model):
+    SalesData = models.ManyToManyField(SalesData)
+
+    def __str__(self):
+        return f"id: {self.id}"
