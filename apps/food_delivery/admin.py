@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import FoodItem, FoodOrder, FoodAvatar, Address, Csv, SalesData, FakeData
+from .models import FoodItem, FoodOrder, FoodAvatar, Address, Csv, SalesData, FakeData2
 
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
@@ -31,4 +31,4 @@ admin.site.register(Address)
 admin.site.register(Csv)
 
 admin.site.register(SalesData, SalesDataAdmin)
-admin.site.register(FakeData)
+admin.site.register(FakeData2)
