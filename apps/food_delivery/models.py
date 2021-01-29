@@ -72,7 +72,7 @@ class Address(models.Model):
 
 class SalesData(models.Model):
     x = models.CharField(max_length=100, default="not set")
-    y = models.IntegerField(max_length=100, default=100)
+    y = models.IntegerField(default=100)
 
     class Meta:
         ordering = ['id']
