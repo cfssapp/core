@@ -24,6 +24,7 @@ urlpatterns = [
     path('order/delete/<int:pk>/', views.DeleteOrderView.as_view(), name='foodorderdelete'),
 
     # path('fake-data/', views.fake_data, name="notices_list"),
+    path('fake-data3/', views.fake_data3, name="datafake3"),
     path('fake-data/', views.fake_data.as_view(), name="datafake"),
     path('fake-data/<int:pk>/', views.FakeDataDetail.as_view(), name='detaildatafake'),
 ]
