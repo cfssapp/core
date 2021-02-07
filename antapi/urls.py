@@ -25,6 +25,7 @@ urlpatterns = [
     path('user/', include('users.urls', namespace='users')),
     path('shopping/', include('apps.shopping.urls')),
     path('food_delivery/', include('apps.food_delivery.urls')),
+    path('djangobb/', include('apps.djangobb.urls')),
 ]
 
 if settings.DEBUG:
