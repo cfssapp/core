@@ -34,7 +34,7 @@ class TopicList(generics.ListAPIView):
     queryset = Topic.objects.all()
     serializer_class = TopicSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['=forum]
+    search_fields = ['=forum']
 
     def get_queryset(self):
         return Topic.objects.filter(user=self.request.user).order_by('-id')
