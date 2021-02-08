@@ -1,8 +1,10 @@
 from rest_framework import serializers
 from .models import Topic
+from users.serializers import CustomUserSerializer
 
 
 class TopicSerializer(serializers.ModelSerializer):
+    avatar = CustomUserSerializer(read_only=True)
 
     class Meta:
         model = Topic
