@@ -16,8 +16,3 @@ class Topic(models.Model):
 
     def __str__(self):
         return self.name
-
-    def save(self, *args, **kwargs):
-        if self.updated is None:
-            self.updated = timezone.now()
-        super(Model, self).save(*args, **kwargs)
