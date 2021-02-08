@@ -71,6 +71,47 @@ class CreateTopic(generics.CreateAPIView):
         # fooditem_ten.avatar = avatar_twentytwo
         # fooditem_ten.save()
 
-        articles = Topic.objects.filter().order_by('-id')
+        articles = Topic.objects.filter(user=self.request.user).order_by('-id')
+        serializer = TopicSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+
+class EditTopic(generics.UpdateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = TopicSerializer
+    queryset = Topic.objects.all()
+
+    def update(self, request, *args, **kwargs):
+        # avatar_id = request.data.get('avatar')
+        # avatar_get = FoodAvatar.objects.get(id=avatar_id)
+        # fooditem_id = request.data.get('id')
+
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        # fooditem_get = FoodItem.objects.get(id=fooditem_id)
+        # fooditem_get.avatar = avatar_get
+        # fooditem_get.save()
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            instance._prefetched_objects_cache = {}
+
+        articles = Topic.objects.filter(user=self.request.user).order_by('-id')
+        serializer = TopicSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+
+class DeleteTopic(generics.RetrieveDestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = TopicSerializer
+    queryset = Topic.objects.all()
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        articles = Topic.objects.filter(user=self.request.user).order_by('-id')
         serializer = TopicSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
