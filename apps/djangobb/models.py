@@ -19,6 +19,5 @@ class Topic(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        if self.updated is None:
-            self.updated = timezone.now()
+        self.updated = datetime.now()
         super(Topic, self).save(*args, **kwargs)
