@@ -4,7 +4,7 @@ from users.serializers import CustomUserSerializer
 
 
 class TopicSerializer(serializers.ModelSerializer):
-    avatar = CustomUserSerializer(read_only=True)
+    user = CustomUserSerializer(read_only=True)
 
     class Meta:
         model = Topic
