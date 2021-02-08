@@ -3,7 +3,7 @@ from django.conf import settings
 
 
 class Topic(models.Model):
-    forum = models.ForeignKey(Forum, related_name='topics', verbose_name=_('Forum'))
+    # forum = models.ForeignKey(Forum, related_name='topics', verbose_name=_('Forum'))
     name = models.CharField(_('Subject'), max_length=255)
     created = models.DateTimeField(_('Created'), auto_now_add=True)
     updated = models.DateTimeField(_('Updated'), null=True)
