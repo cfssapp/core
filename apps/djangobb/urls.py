@@ -6,4 +6,6 @@ urlpatterns = [
 
     # path('topic/', views.show_topic, name='topicshow),
     # url('^topic/(?P<topic_id>\d+)/$', forum_views.show_topic, name='topic'),
+
+    path('topic/', views.TopicList.as_view(), name='listfooditem'),
 ]
