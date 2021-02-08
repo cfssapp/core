@@ -38,3 +38,39 @@ class TopicList(generics.ListAPIView):
 
     def get_queryset(self):
         return Topic.objects.filter(user=self.request.user).order_by('-id')
+
+
+class TopicDetail(generics.RetrieveAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Topic.objects.all()
+    serializer_class = TopicSerializer
+
+
+class CreateTopic(generics.CreateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Topic.objects.all()
+    serializer_class = TopicSerializer
+
+    def create(self, request, *args, **kwargs):
+        # avatar_id = request.data.get('avatar')
+        # avatar_get = FoodAvatar.objects.get(id=avatar_id)
+
+        serializer = TopicSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(
+                serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        obj = serializer.save()
+
+        # fooditem_get = FoodItem.objects.get(id=obj.id)
+        # fooditem_get.avatar = avatar_get
+        # fooditem_get.save()
+
+        #test
+        # fooditem_ten = FoodItem.objects.get(id=10)
+        # avatar_twentytwo = FoodAvatar.objects.get(id=22)
+        # fooditem_ten.avatar = avatar_twentytwo
+        # fooditem_ten.save()
+
+        articles = Topic.objects.filter().order_by('-id')
+        serializer = TopicSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
