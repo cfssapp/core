@@ -19,5 +19,6 @@ class Topic(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
+        if self.created is not None:
         self.updated = datetime.now()
         super(Topic, self).save(*args, **kwargs)
