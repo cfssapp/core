@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 
-Create your models here.
+
 class Topic(models.Model):
     forum = models.ForeignKey(Forum, related_name='topics', verbose_name=_('Forum'))
     name = models.CharField(_('Subject'), max_length=255)
