@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 
 from django.utils import timezone
+from datetime import datetime
 
 
 class Topic(models.Model):
@@ -16,3 +17,8 @@ class Topic(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if self.updated is None:
+            self.updated = datetime.now()
+        super(Topic, self).save(*args, **kwargs)
