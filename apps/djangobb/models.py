@@ -18,6 +18,6 @@ class Topic(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-    if self.updated is None:
-        self.updated = timezone.now()
-    super(Model, self).save(*args, **kwargs)
+        if self.updated is None:
+            self.updated = timezone.now()
+        super(Model, self).save(*args, **kwargs)
