@@ -155,7 +155,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    'DATETIME_FORMAT': "%Y-%m-%d - %H:%M:%S",
+    # 'DATETIME_FORMAT': "%Y-%m-%d - %H:%M:%S",
+    'DATETIME_FORMAT': "%Y-%m-%d %H:%M",
 }
 
 CORS_ORIGIN_WHITELIST = [
