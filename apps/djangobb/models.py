@@ -14,6 +14,7 @@ class Topic(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
     views = models.IntegerField(blank=True, default=0)
     post_count = models.IntegerField(blank=True, default=0)
+    comment = models.ManyToManyField(Post)
 
     def __str__(self):
         return self.name
