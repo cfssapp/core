@@ -5,6 +5,16 @@ from django.utils import timezone
 from datetime import datetime
 
 
+class Post(models.Model):
+    content = models.CharField(max_length=255)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(null=True)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
+
+    def __str__(self):
+        return self.content
+
 class Topic(models.Model):
     forum = models.CharField(max_length=100, default="not set")
     name = models.CharField(max_length=255)
@@ -23,14 +33,3 @@ class Topic(models.Model):
         if self.created is not None:
             self.updated = timezone.now()
         super(Topic, self).save(*args, **kwargs)
-
-
-class Post(models.Model):
-    content = models.CharField(max_length=255)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(null=True)
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
-
-    def __str__(self):
-        return self.content
