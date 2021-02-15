@@ -12,7 +12,7 @@ class PostSerializer(serializers.ModelSerializer):
 
 class TopicSerializer(serializers.ModelSerializer):
     user = CustomUserSerializer(read_only=True)
-    posts = PostSerializer(read_only=True)
+    posts = PostSerializer(many=True, read_only=True)
 
     class Meta:
         model = Topic
