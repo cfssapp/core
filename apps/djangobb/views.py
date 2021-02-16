@@ -137,6 +137,6 @@ class PostToTopicView(APIView):
 
         order_qs.posts.add(new_post)
 
-        articles = Topic.objects.filter(id=topic_id).order_by('-id')
+        articles = Topic.objects.get(id=topic_id)
         serializer = TopicSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
