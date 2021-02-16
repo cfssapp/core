@@ -133,7 +133,6 @@ class PostToTopicView(APIView):
         )
 
         order_qs = Topic.objects.filter(id=topic_id).order_by('-id').first()
-        order_id = order_qs.order_id
 
         order_qs.items.add(new_post)
 
