@@ -136,9 +136,9 @@ class PostToTopicView(APIView):
 
         order_qs.posts.add(new_post)
 
-        articles = Topic.objects.filter(id=topic_id).order_by('-id').first()
-        serializer = TopicSerializer(articles, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        # articles = Post.objects.filter(id=topic_id).order_by('-id')
+        # serializer = PostSerializer(articles, many=True)
+        # return JsonResponse(serializer.data, safe=False)
 
         # cartadded_items = FoodItem.objects.filter(cartadded=True)
         # for item in cartadded_items:
