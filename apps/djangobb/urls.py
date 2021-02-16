@@ -10,4 +10,6 @@ urlpatterns = [
     path('topic/edit/<int:pk>/', views.EditTopic.as_view(), name='topicedit'),
     path('topic/delete/<int:pk>/', views.DeleteTopic.as_view(), name='topicdelete'),
 
+    path('post-to-topic/', views.PostToTopicView.as_view(), name='postaddtotopic'),
+
 ]

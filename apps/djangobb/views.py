@@ -6,8 +6,8 @@ from rest_framework import generics
 from rest_framework.permissions import SAFE_METHODS, IsAuthenticated, IsAuthenticatedOrReadOnly, BasePermission, IsAdminUser, DjangoModelPermissions
 from rest_framework import viewsets, permissions
 
-from .serializers import TopicSerializer
-from .models import Topic
+from .serializers import TopicSerializer, PostSerializer
+from .models import Topic, Post
 
 from rest_framework.views import APIView
 from django.shortcuts import render, get_object_or_404
@@ -115,3 +115,46 @@ class DeleteTopic(generics.RetrieveDestroyAPIView):
         articles = Topic.objects.filter(user=self.request.user).order_by('-id')
         serializer = TopicSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
+
+
+class PostToTopicView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = TopicSerializer
+    queryset = Topic.objects.all()
+
+    def post(self, request, *args, **kwargs):
+        topic_id = request.data.get('id')
+        post_content = request.data.get('content')
+        
+
+        new_post = Post.objects.create(
+            user=self.request.user,
+            content=post_content,
+        )
+
+        order_qs = Topic.objects.filter(id=topic_id).order_by('-id').first()
+        order_id = order_qs.order_id
+
+        order_qs.items.add(new_post)
+
+        articles = Topic.objects.filter(user=self.request.user).order_by('-id')
+        serializer = TopicSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+        # cartadded_items = FoodItem.objects.filter(cartadded=True)
+        # for item in cartadded_items:
+        #     order.items.add(item)
+        # cartadded_items.update(order_id=order_id)
+        # cartadded_items.update(ordered=True)
+        # cartadded_items.update(cartadded=False)
+        # for item in cartadded_items:
+        #     item.save()
+
+        # salesdata_old = SalesData.objects.get(id=1)
+        # new_y = salesdata_old.y + 1
+        # salesdata_get = SalesData.objects.filter(id=1)
+        # salesdata_get.update(y=new_y)
+
+        # articles = FoodItem.objects.filter(cartadded=True, ordered=False).order_by('-id')
+        # serializer = FoodItemSerializer(articles, many=True)
+        # return JsonResponse(serializer.data, safe=False)
