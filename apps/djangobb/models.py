@@ -12,6 +12,9 @@ class Post(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
 
+    class Meta:
+        ordering = ['-id']
+
     def __str__(self):
         return self.content
 
