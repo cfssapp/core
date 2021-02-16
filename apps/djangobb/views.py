@@ -130,30 +130,13 @@ class PostToTopicView(APIView):
         new_post = Post.objects.create(
             user=self.request.user,
             content=post_content,
+            topic_id=topic_id
         )
 
         order_qs = Topic.objects.filter(id=topic_id).order_by('-id').first()
 
         order_qs.posts.add(new_post)
 
-        # articles = Post.objects.filter(id=topic_id).order_by('-id')
-        # serializer = PostSerializer(articles, many=True)
-        # return JsonResponse(serializer.data, safe=False)
-
-        # cartadded_items = FoodItem.objects.filter(cartadded=True)
-        # for item in cartadded_items:
-        #     order.items.add(item)
-        # cartadded_items.update(order_id=order_id)
-        # cartadded_items.update(ordered=True)
-        # cartadded_items.update(cartadded=False)
-        # for item in cartadded_items:
-        #     item.save()
-
-        # salesdata_old = SalesData.objects.get(id=1)
-        # new_y = salesdata_old.y + 1
-        # salesdata_get = SalesData.objects.filter(id=1)
-        # salesdata_get.update(y=new_y)
-
-        # articles = FoodItem.objects.filter(cartadded=True, ordered=False).order_by('-id')
-        # serializer = FoodItemSerializer(articles, many=True)
-        # return JsonResponse(serializer.data, safe=False)
+        articles = Post.objects.filter(topic_id=topic_id).order_by('-id')
+        serializer = PostSerializer(articles, many=True)
+        return JsonResponse(serializer.data, safe=False)

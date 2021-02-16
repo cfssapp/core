@@ -11,6 +11,7 @@ class Post(models.Model):
     updated = models.DateTimeField(null=True)
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
+    topic_id = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         ordering = ['-id']
