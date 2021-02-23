@@ -25,7 +25,7 @@ def fake_data_01(request):
             "y": 1
         },
     ],
-}
+    }
 
 	return JsonResponse(api_urls, safe=False)
 
