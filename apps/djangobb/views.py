@@ -16,17 +16,29 @@ from django.utils import timezone
 from rest_framework import filters
 
 
+# def fake_data_01(request):
+
+#     api_urls = {
+#     "salesData": [
+#         {
+#             "x": "Jan",
+#             "y": 1
+#         },
+#     ],
+#     }
+
+# 	return JsonResponse(api_urls, safe=False)
+
 def fake_data_01(request):
-
-    api_urls = {
-    "salesData": [
-        {
-            "x": "Jan",
-            "y": 1
-        },
-    ],
-    }
-
+	api_urls = [
+  {
+      "id": "000000001",
+      "avatar": "https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png",
+      "title": "你收到了 14 份新周报",
+      "datetime": "2017-08-09",
+      "type": "notification"
+  },
+]
 	return JsonResponse(api_urls, safe=False)
 
 
