@@ -22,11 +22,10 @@ def apiOverview1(request):
 @api_view(['GET'])
 def apiOverview(request):
 	api_urls = {
-		"data": [
+		"data": 
 			{
 				"isLogin": "false"
 			},
-		],
 		"errorCode": "401",
     	"errorMessage": "请先登录！",
     	"success": "true"
