@@ -161,6 +161,7 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_WHITELIST = [
     "https://www.moba.my",
+    "https://test.moba.my",
 ]
 
 # Custom user model & JWT
