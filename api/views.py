@@ -23,12 +23,12 @@ def apiOverview(request):
 	api_urls = {
 		"data": [
 			{
-				"isLogin": 'false'
+				"isLogin": "false"
 			},
 		],
 		"errorCode": "401",
     	"errorMessage": "请先登录！",
-    	"success": 'true'
+    	"success": "true"
 	}
 	return Response(api_urls)
 
