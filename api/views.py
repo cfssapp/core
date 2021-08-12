@@ -9,7 +9,7 @@ from .models import Task
 # Create your views here.
 
 @api_view(['GET'])
-def apiOverview(request):
+def apiOverview1(request):
 	api_urls = {
 		'List':'/task-list/',
 		'Detail View':'/task-detail/<str:pk>/',
@@ -17,7 +17,19 @@ def apiOverview(request):
 		'Update':'/task-update/<str:pk>/',
 		'Delete':'/task-delete/<str:pk>/',
 		}
+	return Response(api_urls)
 
+def apiOverview(request):
+	api_urls = {
+		"data": [
+			{
+				"isLogin": false
+			},
+		],
+		"errorCode": "401",
+    	"errorMessage": "请先登录！",
+    	"success": true
+	}
 	return Response(api_urls)
 
 @api_view(['GET'])
