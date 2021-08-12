@@ -19,6 +19,7 @@ def apiOverview1(request):
 		}
 	return Response(api_urls)
 
+@api_view(['GET'])
 def apiOverview(request):
 	api_urls = {
 		"data": [
