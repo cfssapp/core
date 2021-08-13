@@ -45,6 +45,10 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
 
+    # TEST.MOBA.MY
+    status = models.CharField(max_length=150, blank=True)
+    currentAuthority = models.CharField(max_length=150, blank=True)
+
     objects = CustomAccountManager()
 
     # USERNAME_FIELD = 'email'
