@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -19,6 +20,7 @@ def apiOverview1(request):
 		}
 	return Response(api_urls)
 
+@login_required
 @api_view(['GET'])
 def apiOverview(request):
 	api_urls = {
