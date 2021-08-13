@@ -11,6 +11,9 @@ class CustomUserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(min_length=8, write_only=True)
     is_active = serializers.BooleanField(required=False)
 
+    status = serializers.CharField(required=False)
+    currentAuthority = serializers.CharField(required=False)
+
     class Meta:
         model = NewUser
         fields = ('id', 'email', 'user_name', 'password', 'is_active', 'avatar')
