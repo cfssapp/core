@@ -53,8 +53,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         data['user_name'] = self.user.user_name
         data['is_active'] = self.user.is_active
 
-        data['status'] = self.user.user_name
-        data['currentAuthority'] = self.user.user_name
+        data['status'] = 'ok'
+        data['currentAuthority'] = 'admin'
         return data
 
 
