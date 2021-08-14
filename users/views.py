@@ -9,7 +9,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from rest_framework import generics
+from rest_framework import generics, permissions
 from users.models import NewUser
 from users.serializers import CustomUserSerializer
 
@@ -73,3 +73,11 @@ class currentUser(generics.ListAPIView):
 class currentUserDetail(generics.RetrieveAPIView):
     queryset = NewUser.objects.all()
     serializer_class = CustomUserSerializer 
+
+
+# TEST.MOBA.MY
+class currentUser1(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    queryset = NewUser.objects.all()
+    serializer_class = CustomUserSerializer
