@@ -48,6 +48,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     # TEST.MOBA.MY
     status = models.CharField(max_length=150, blank=True)
     currentAuthority = models.CharField(max_length=150, blank=True)
+    success = models.CharField(max_length=150, blank=True)
 
     objects = CustomAccountManager()
 
