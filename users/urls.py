@@ -17,6 +17,8 @@ urlpatterns = [
 
     # TEST.MOBA.MY
     path('current-user1/', views.currentUser1.as_view(), name="current_user1"),
+    path('current-user1/<int:pk>/', views.currentUser1Detail.as_view(), name="current_user1_detail"),
+
 ]
 
 

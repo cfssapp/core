@@ -81,3 +81,9 @@ class currentUser1(generics.ListAPIView):
 
     queryset = NewUser.objects.all()
     serializer_class = CustomUserSerializer
+
+class currentUser1Detail(generics.RetrieveAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    queryset = NewUser.objects.all()
+    serializer_class = CustomUserSerializer 
