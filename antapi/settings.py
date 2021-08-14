@@ -160,6 +160,7 @@ REST_FRAMEWORK = {
     ),
     # 'DATETIME_FORMAT': "%Y-%m-%d - %H:%M:%S",
     'DATETIME_FORMAT': "%Y-%m-%d %H:%M",
+    "EXCEPTION_HANDLER": "api.views.custom_exception_handler"
 }
 
 CORS_ORIGIN_WHITELIST = [

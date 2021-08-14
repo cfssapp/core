@@ -4,12 +4,15 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.views import exception_handler
+from rest_framework.exceptions import NotAuthenticated
+
+
 from .serializers import TaskSerializer
-
 from .models import Task
+
+
 # Create your views here.
-
-
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def apiOverview(request):
@@ -24,7 +27,15 @@ def apiOverview(request):
 	}
 	return Response(api_urls)
 
+def custom_exception_handler(exc, context):
+    if isinstance(exc, NotAuthenticated):
+        return Response({"custom_key": "custom message"}, status=401)
 
+    # else
+    # default case
+    return exception_handler(exc, context)
+
+# BK Testing
 @api_view(['GET'])
 def apiOverviewbk(request):
 	api_urls = {
