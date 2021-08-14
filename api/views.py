@@ -25,7 +25,7 @@ api_urls = {
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def apiOverview(request):
+def apiOverview1(request):
 	
 	return Response(api_urls)
 
@@ -40,7 +40,7 @@ def custom_exception_handler(exc, context):
 
 # BK Testing
 @api_view(['GET'])
-def apiOverviewbk(request):
+def apiOverview(request):
 	api_urls = {
 		'List':'/task-list/',
 		'Detail View':'/task-detail/<str:pk>/',
