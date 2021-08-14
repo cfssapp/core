@@ -13,6 +13,16 @@ from .models import Task
 
 
 # Create your views here.
+api_urls = {
+		"data": 
+			{
+				"isLogin": "false"
+			},
+		"errorCode": "401",
+    	"errorMessage": "请先登录！",
+    	"success": "true"
+	}
+
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def apiOverview(request):
@@ -28,8 +38,9 @@ def apiOverview(request):
 	return Response(api_urls)
 
 def custom_exception_handler(exc, context):
+	
     if isinstance(exc, NotAuthenticated):
-        return Response({"custom_key": "custom message"}, status=401)
+        return Response(api_urls, status=401)
 
     # else
     # default case
