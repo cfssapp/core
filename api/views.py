@@ -19,22 +19,14 @@ api_urls = {
 				"isLogin": "false"
 			},
 		"errorCode": "401",
-    	"errorMessage": "请先登录！",
+    	"errorMessage": "Please login!",
     	"success": "true"
 	}
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def apiOverview(request):
-	api_urls = {
-		"data": 
-			{
-				"isLogin": "false"
-			},
-		"errorCode": "401",
-    	"errorMessage": "请先登录！",
-    	"success": "true"
-	}
+	
 	return Response(api_urls)
 
 def custom_exception_handler(exc, context):
