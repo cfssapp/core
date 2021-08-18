@@ -29,8 +29,8 @@ class CustomUserCreate(APIView):
 
 
 class BlacklistTokenUpdateView(APIView):
-    permission_classes = [AllowAny]
-    authentication_classes = (IsAuthenticated)
+    permission_classes = [IsAuthenticated]
+    # authentication_classes = (IsAuthenticated)
 
     def post(self, request):
         try:
