@@ -13,6 +13,7 @@ from rest_framework import generics, permissions
 from users.models import NewUser
 from users.serializers import CustomUserSerializer
 
+from rest_framework.permissions import IsAuthenticated
 
 class CustomUserCreate(APIView):
     permission_classes = [AllowAny]
@@ -29,7 +30,7 @@ class CustomUserCreate(APIView):
 
 class BlacklistTokenUpdateView(APIView):
     permission_classes = [AllowAny]
-    authentication_classes = ()
+    authentication_classes = (IsAuthenticated)
 
     def post(self, request):
         try:
