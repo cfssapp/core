@@ -9,6 +9,9 @@ urlpatterns = [
 
 	path('task-update/<str:pk>/', views.taskUpdate, name="task-update"),
 	path('task-delete/<str:pk>/', views.taskDelete, name="task-delete"),
+
+	# TEST.MOBA.MY
+	path('1', views.apiOverview1, name="api-overview1"),
 ]
 
 
