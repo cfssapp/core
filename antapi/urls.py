@@ -26,6 +26,7 @@ urlpatterns = [
     path('shopping/', include('apps.shopping.urls')),
     path('food_delivery/', include('apps.food_delivery.urls')),
     path('djangobb/', include('apps.djangobb.urls')),
+    # path('calibration/', include('apps.calibration.urls')),
 ]
 
 if settings.DEBUG:
