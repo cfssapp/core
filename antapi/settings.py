@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'apps.shopping',
     'apps.food_delivery',
     'apps.djangobb',
+    'apps.calibration',
 
     'import_export',
     'rest_framework',
