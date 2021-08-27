@@ -14,4 +14,4 @@ class Certificate(models.Model):
         ordering = ['-id']
 
     def __str__(self):
-        return self.content
+        return self.certificate_id
