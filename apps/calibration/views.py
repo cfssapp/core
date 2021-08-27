@@ -41,10 +41,10 @@ api_urls = {
 }
 
 # BK Testing
-@api_view(['GET'])
-def apiOverview(request):
+# @api_view(['GET'])
+# def apiOverview(request):
 	
-	return Response(api_urls)
+# 	return Response(api_urls)
 
 
 class CertificateList(generics.ListAPIView):
