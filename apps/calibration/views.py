@@ -1,11 +1,19 @@
 from django.shortcuts import render
-from django.http import JsonResponse
-
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from django.http import JsonResponse, HttpResponse
+from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 from rest_framework.response import Response
-from rest_framework.views import exception_handler
-from rest_framework.exceptions import NotAuthenticated
+from rest_framework import generics
+from rest_framework.permissions import SAFE_METHODS, IsAuthenticated, IsAuthenticatedOrReadOnly, BasePermission, IsAdminUser, DjangoModelPermissions
+from rest_framework import viewsets, permissions
+
+from .serializers import CertificateSerializer
+from .models import Certificate
+
+from rest_framework.views import APIView
+from django.shortcuts import render, get_object_or_404
+from django.utils import timezone
+
+from rest_framework import filters
 
 api_urls = {
     "data": [
@@ -37,3 +45,20 @@ api_urls = {
 def apiOverview(request):
 	
 	return Response(api_urls)
+
+
+class CertificateList(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Certificate.objects.all()
+    serializer_class = CertificateSerializer
+    # filter_backends = [filters.SearchFilter]
+    # search_fields = ['=forum']
+
+    def get_queryset(self):
+        return Certificate.objects.filter(user=self.request.user).order_by('-id')
+
+
+class CertificateDetail(generics.RetrieveAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Certificate.objects.all()
+    serializer_class = CertificateSerializer
