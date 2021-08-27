@@ -55,7 +55,8 @@ class CertificateList(generics.ListAPIView):
     # search_fields = ['=forum']
 
     def get_queryset(self):
-        return Certificate.objects.filter(user=self.request.user).order_by('-id')
+        # return Certificate.objects.filter(user=self.request.user).order_by('-id')
+        return Certificate.objects.filter().order_by('-id')
 
 
 class CertificateDetail(generics.RetrieveAPIView):
