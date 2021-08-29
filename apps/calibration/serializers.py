@@ -11,6 +11,8 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class CertificateSerializer(serializers.ModelSerializer):
+    user = CustomUserSerializer(read_only=True)
+    comments = CommentSerializer(many=True, read_only=True)
 
     class Meta:
         model = Certificate
