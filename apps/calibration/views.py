@@ -83,7 +83,7 @@ class CommentToCertificateView(APIView):
 
         order_qs = Certificate.objects.filter(id=topic_id).order_by('-id').first()
 
-        order_qs.posts.add(new_post)
+        order_qs.comments.add(new_post)
 
         articles = Certificate.objects.get(id=topic_id)
         serializer = CertificateSerializer(articles)

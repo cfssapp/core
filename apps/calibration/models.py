@@ -24,6 +24,8 @@ class Certificate(models.Model):
     instrument = models.CharField(max_length=100, default="not set")
     customer = models.CharField(max_length=100, default="not set")
 
+    comments = models.ManyToManyField(Comment, blank=True)
+
     class Meta:
         ordering = ['-id']
 
