@@ -6,8 +6,8 @@ from rest_framework import generics
 from rest_framework.permissions import SAFE_METHODS, IsAuthenticated, IsAuthenticatedOrReadOnly, BasePermission, IsAdminUser, DjangoModelPermissions
 from rest_framework import viewsets, permissions
 
-from .serializers import CertificateSerializer
-from .models import Certificate
+from .serializers import CertificateSerializer, CommentSerializer
+from .models import Certificate, Comment
 
 from rest_framework.views import APIView
 from django.shortcuts import render, get_object_or_404
@@ -63,3 +63,28 @@ class CertificateDetail(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated]
     queryset = Certificate.objects.all()
     serializer_class = CertificateSerializer
+
+
+class CommentToCertificateView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = CertificateSerializer
+    queryset = Certificate.objects.all()
+
+    def post(self, request, *args, **kwargs):
+        topic_id = request.data.get('id')
+        post_content = request.data.get('content')
+        
+
+        new_post = Comment.objects.create(
+            user=self.request.user,
+            content=post_content,
+            topic_id=topic_id
+        )
+
+        order_qs = Certificate.objects.filter(id=topic_id).order_by('-id').first()
+
+        order_qs.posts.add(new_post)
+
+        articles = Certificate.objects.get(id=topic_id)
+        serializer = CertificateSerializer(articles)
+        return JsonResponse(serializer.data, safe=False)
