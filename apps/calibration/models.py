@@ -22,6 +22,8 @@ class Comment(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
     cert_id = models.CharField(max_length=100, blank=True, null=True)
 
+    image = models.OneToOneField(CommentImage, on_delete=models.CASCADE, blank=True, null=True)
+
     class Meta:
         ordering = ['-id']
 
