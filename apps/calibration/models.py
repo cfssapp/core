@@ -5,6 +5,15 @@ from django.utils import timezone
 from datetime import datetime
 
 
+class CommentImage(models.Model):
+    imagefile = models.ImageField(default='default.jpg', upload_to='upload_pics')
+
+    def __str__(self):
+        return str(self.id)
+        # return str(self.file)
+        # return f"https://antapi.pythonanywhere.com/media/{str(self.file)}"
+
+
 class Comment(models.Model):
     content = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
