@@ -24,7 +24,7 @@ class Comment(models.Model):
 
     # image = models.OneToOneField(CommentImage, on_delete=models.CASCADE, blank=True, null=True)
 
-    image = models.ForeignKey(CommentImage, on_delete=models.CASCADE, blank=True, null=True)
+    image = models.ManyToManyField(CommentImage, on_delete=models.CASCADE, blank=True, null=True)
 
 
     class Meta:
