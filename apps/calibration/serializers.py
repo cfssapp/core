@@ -13,7 +13,7 @@ class CommentImageSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
     user = CustomUserSerializer(read_only=True)
-    image = CommentImageSerializer(read_only=True)
+    image = CommentImageSerializer(many=True, read_only=True)
 
     class Meta:
         model = Comment
