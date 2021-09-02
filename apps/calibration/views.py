@@ -75,7 +75,7 @@ class CommentToCertificateView(APIView):
         post_content = request.data.get('content')
         
         avatar_id = request.data.get('imagesupload_id')
-        avatar_get = CommentImage.objects.get(id=avatar_id)
+        # avatar_get = CommentImage.objects.get(id=avatar_id)
 
 
         new_post = Comment.objects.create(
@@ -84,7 +84,9 @@ class CommentToCertificateView(APIView):
             cert_id=topic_id,
         )
 
-        new_post.image.add(avatar_get)
+        for imageid in avatar_id:
+            avatar_get = CommentImage.objects.get(id=imageid)
+            new_post.image.add(avatar_get)
 
         order_qs = Certificate.objects.filter(id=topic_id).order_by('-id').first()
         order_qs.comments.add(new_post)
