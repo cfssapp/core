@@ -75,14 +75,14 @@ class CommentToCertificateView(APIView):
         post_content = request.data.get('content')
         
         avatar_id = request.data.get('imagesupload_id')
-        # avatar_get = CommentImage.objects.get(id=avatar_id)
+        avatar_get = CommentImage.objects.get(id=avatar_id)
 
 
         new_post = Comment.objects.create(
             user=self.request.user,
             content=post_content,
             cert_id=topic_id,
-            image=3
+            image=avatar_get
         )
 
         # fooditem_get = Comment.objects.get(id=obj.id)
