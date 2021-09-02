@@ -82,11 +82,13 @@ class CommentToCertificateView(APIView):
             user=self.request.user,
             content=post_content,
             cert_id=topic_id,
-            image=avatar_id
+            image=3
         )
 
-        order_qs = Certificate.objects.filter(id=topic_id).order_by('-id').first()
+        # fooditem_get = Comment.objects.get(id=obj.id)
 
+
+        order_qs = Certificate.objects.filter(id=topic_id).order_by('-id').first()
         order_qs.comments.add(new_post)
 
         articles = Certificate.objects.get(id=topic_id)
