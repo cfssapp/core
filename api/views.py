@@ -39,106 +39,56 @@ api_urls = {
 }
 
 api_urls1 = {
-    "data": [
-        {
-            "id": "trend-1",
-            "updatedAt": "2021-08-20T11:49:35.376Z",
-            "user": {
-                "name": "曲丽丽",
-                "avatar": "https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png"
+    "data": {
+        "name": "Serati Ma",
+        "avatar": "https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png",
+        "userid": "00000001",
+        "email": "antdesign@alipay.com",
+        "signature": "海纳百川，有容乃大",
+        "title": "交互专家",
+        "group": "蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED",
+        "tags": [
+            {
+                "key": "0",
+                "label": "很有想法的"
             },
-            "group": {
-                "name": "高逼格设计天团",
-                "link": "http://github.com/"
+            {
+                "key": "1",
+                "label": "专注设计"
             },
-            "project": {
-                "name": "六月迭代",
-                "link": "http://github.com/"
+            {
+                "key": "2",
+                "label": "辣~"
             },
-            "template": "在 @{group} 新建项目 @{project}"
+            {
+                "key": "3",
+                "label": "大长腿"
+            },
+            {
+                "key": "4",
+                "label": "川妹子"
+            },
+            {
+                "key": "5",
+                "label": "海纳百川"
+            }
+        ],
+        "notifyCount": 12,
+        "unreadCount": 11,
+        "country": "China",
+        "geographic": {
+            "province": {
+                "label": "浙江省",
+                "key": "330000"
+            },
+            "city": {
+                "label": "杭州市",
+                "key": "330100"
+            }
         },
-        {
-            "id": "trend-2",
-            "updatedAt": "2021-08-20T11:49:35.376Z",
-            "user": {
-                "name": "付小小",
-                "avatar": "https://gw.alipayobjects.com/zos/rmsportal/cnrhVkzwxjPwAaCfPbdc.png"
-            },
-            "group": {
-                "name": "高逼格设计天团",
-                "link": "http://github.com/"
-            },
-            "project": {
-                "name": "六月迭代",
-                "link": "http://github.com/"
-            },
-            "template": "在 @{group} 新建项目 @{project}"
-        },
-        {
-            "id": "trend-3",
-            "updatedAt": "2021-08-20T11:49:35.376Z",
-            "user": {
-                "name": "林东东",
-                "avatar": "https://gw.alipayobjects.com/zos/rmsportal/gaOngJwsRYRaVAuXXcmB.png"
-            },
-            "group": {
-                "name": "中二少女团",
-                "link": "http://github.com/"
-            },
-            "project": {
-                "name": "六月迭代",
-                "link": "http://github.com/"
-            },
-            "template": "在 @{group} 新建项目 @{project}"
-        },
-        {
-            "id": "trend-4",
-            "updatedAt": "2021-08-20T11:49:35.376Z",
-            "user": {
-                "name": "周星星",
-                "avatar": "https://gw.alipayobjects.com/zos/rmsportal/WhxKECPNujWoWEFNdnJE.png"
-            },
-            "project": {
-                "name": "5 月日常迭代",
-                "link": "http://github.com/"
-            },
-            "template": "将 @{project} 更新至已发布状态"
-        },
-        {
-            "id": "trend-5",
-            "updatedAt": "2021-08-20T11:49:35.376Z",
-            "user": {
-                "name": "朱偏右",
-                "avatar": "https://gw.alipayobjects.com/zos/rmsportal/ubnKSIfAJTxIgXOKlciN.png"
-            },
-            "project": {
-                "name": "工程效能",
-                "link": "http://github.com/"
-            },
-            "comment": {
-                "name": "留言",
-                "link": "http://github.com/"
-            },
-            "template": "在 @{project} 发布了 @{comment}"
-        },
-        {
-            "id": "trend-6",
-            "updatedAt": "2021-08-20T11:49:35.376Z",
-            "user": {
-                "name": "乐哥",
-                "avatar": "https://gw.alipayobjects.com/zos/rmsportal/jZUIxmJycoymBprLOUbT.png"
-            },
-            "group": {
-                "name": "程序员日常",
-                "link": "http://github.com/"
-            },
-            "project": {
-                "name": "品牌迭代",
-                "link": "http://github.com/"
-            },
-            "template": "在 @{group} 新建项目 @{project}"
-        }
-    ]
+        "address": "西湖区工专路 77 号",
+        "phone": "0752-268888888"
+    }
 }
 
 @api_view(['GET'])
