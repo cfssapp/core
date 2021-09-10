@@ -6,8 +6,8 @@ from rest_framework import generics
 from rest_framework.permissions import SAFE_METHODS, IsAuthenticated, IsAuthenticatedOrReadOnly, BasePermission, IsAdminUser, DjangoModelPermissions
 from rest_framework import viewsets, permissions
 
-from .serializers import CertificateSerializer, CommentSerializer, CommentImageSerializer
-from .models import Certificate, Comment, CommentImage
+from .serializers import CertificateSerializer, CommentSerializer, CommentImageSerializer, ActivitySerializer
+from .models import Certificate, Comment, CommentImage, Activity
 
 from rest_framework.views import APIView
 from django.shortcuts import render, get_object_or_404
@@ -117,3 +117,15 @@ class CreateCommentImage(generics.CreateAPIView):
     parser_classes = [MultiPartParser, FormParser]
     queryset = CommentImage.objects.all()
     serializer_class = CommentImageSerializer
+
+
+class ActivityList(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Activity.objects.all()
+    serializer_class = ActivitySerializer
+    # filter_backends = [filters.SearchFilter]
+    # search_fields = ['=forum']
+
+    def get_queryset(self):
+        # return Certificate.objects.filter(user=self.request.user).order_by('-id')
+        return Activity.objects.filter().order_by('-id')

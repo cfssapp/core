@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Certificate, Comment, CommentImage
+from .models import Certificate, Comment, CommentImage, Activity
 from users.serializers import CustomUserSerializer
 
 
@@ -29,3 +29,10 @@ class CertificateSerializer(serializers.ModelSerializer):
         fields ='__all__'
 
 
+
+class ActivitySerializer(serializers.ModelSerializer):
+    user = CustomUserSerializer(read_only=True)
+
+    class Meta:
+        model = Activity
+        fields ='__all__'

@@ -10,4 +10,6 @@ urlpatterns = [
     path('comment-to-certificate/', views.CommentToCertificateView.as_view(), name='commentaddtocertificate'),
 
     path('comment/image/', views.CreateCommentImage.as_view(), name='foodavatarcreate'),
+
+    path('activity/', views.ActivityList.as_view(), name='listactivity'),
 ]
