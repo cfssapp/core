@@ -107,6 +107,15 @@ class CommentToCertificateView(APIView):
         order_qs = Certificate.objects.filter(id=topic_id).order_by('-id').first()
         order_qs.comments.add(new_post)
 
+        
+        # create activity
+        new_activity = Activity.objects.create(
+            user=self.request.user,
+            group=post_content,
+            project=topic_id,
+        )
+
+
         articles = Certificate.objects.get(id=topic_id)
         serializer = CertificateSerializer(articles)
         return JsonResponse(serializer.data, safe=False)
