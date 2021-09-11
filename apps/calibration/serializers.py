@@ -32,7 +32,7 @@ class CertificateSerializer(serializers.ModelSerializer):
 
 class ActivitySerializer(serializers.ModelSerializer):
     user = CustomUserSerializer(read_only=True)
-    certificate_id2 = CertificateSerializer(read_only=True)
+    certificate = CertificateSerializer(read_only=True)
 
     class Meta:
         model = Activity
