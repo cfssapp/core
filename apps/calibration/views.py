@@ -113,6 +113,8 @@ class CommentToCertificateView(APIView):
             user=self.request.user,
             group=post_content,
             project=topic_id,
+            certificate=order_qs,
+            template='commented on @{certificate}.'
         )
 
 
