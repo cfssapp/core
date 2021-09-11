@@ -47,20 +47,20 @@ class Certificate(models.Model):
         return self.certificate_id
 
 
-# class Activity(models.Model):
-#     group = models.CharField(max_length=255, default=1)
-#     # certificate_id2 = models.ForeignKey('Certificate', on_delete=models.CASCADE, blank=True, null=True)
+class Activity(models.Model):
+    group = models.CharField(max_length=255, default=1)
+    # certificate_id2 = models.ForeignKey('Certificate', on_delete=models.CASCADE, blank=True, null=True)
    
 
-#     project = models.CharField(max_length=255)
-#     created = models.DateTimeField(auto_now_add=True)
-#     updated = models.DateTimeField(null=True)
-#     user = models.ForeignKey(
-#         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
-#     template = models.CharField(max_length=100, blank=True, null=True)
+    project = models.CharField(max_length=255)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(null=True)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
+    template = models.CharField(max_length=100, blank=True, null=True)
 
-#     class Meta:
-#         ordering = ['-id']
+    class Meta:
+        ordering = ['-id']
 
-#     def __str__(self):
-#         return self.project
+    def __str__(self):
+        return self.project
