@@ -48,7 +48,10 @@ class Certificate(models.Model):
 
 
 class Activity(models.Model):
-    group = models.CharField(max_length=255)
+    # group = models.CharField(max_length=255)
+    group = models.ForeignKey('Certificate', on_delete=models.CASCADE, blank=True, null=True)
+   
+
     project = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(null=True)
