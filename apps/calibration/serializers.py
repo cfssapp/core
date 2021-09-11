@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Certificate, Comment, CommentImage, Activity
+from .models import Certificate, Comment, CommentImage
 from users.serializers import CustomUserSerializer
 
 

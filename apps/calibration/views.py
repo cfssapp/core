@@ -6,8 +6,8 @@ from rest_framework import generics
 from rest_framework.permissions import SAFE_METHODS, IsAuthenticated, IsAuthenticatedOrReadOnly, BasePermission, IsAdminUser, DjangoModelPermissions
 from rest_framework import viewsets, permissions
 
-from .serializers import CertificateSerializer, CommentSerializer, CommentImageSerializer, ActivitySerializer
-from .models import Certificate, Comment, CommentImage, Activity
+from .serializers import CertificateSerializer, CommentSerializer, CommentImageSerializer
+from .models import Certificate, Comment, CommentImage
 
 from rest_framework.views import APIView
 from django.shortcuts import render, get_object_or_404
