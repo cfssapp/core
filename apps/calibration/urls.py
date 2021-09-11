@@ -11,5 +11,5 @@ urlpatterns = [
 
     path('comment/image/', views.CreateCommentImage.as_view(), name='foodavatarcreate'),
 
-    path('activity/', views.ActivityList.as_view(), name='listactivity'),
+    # path('activity/', views.ActivityList.as_view(), name='listactivity'),
 ]

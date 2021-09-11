@@ -109,11 +109,11 @@ class CommentToCertificateView(APIView):
 
         
         # create activity
-        new_activity = Activity.objects.create(
-            user=self.request.user,
-            group=post_content,
-            project=topic_id,
-        )
+        # new_activity = Activity.objects.create(
+        #     user=self.request.user,
+        #     group=post_content,
+        #     project=topic_id,
+        # )
 
 
         articles = Certificate.objects.get(id=topic_id)
@@ -128,13 +128,13 @@ class CreateCommentImage(generics.CreateAPIView):
     serializer_class = CommentImageSerializer
 
 
-class ActivityList(generics.ListAPIView):
-    permission_classes = [permissions.IsAuthenticated]
-    queryset = Activity.objects.all()
-    serializer_class = ActivitySerializer
-    # filter_backends = [filters.SearchFilter]
-    # search_fields = ['=forum']
+# class ActivityList(generics.ListAPIView):
+#     permission_classes = [permissions.IsAuthenticated]
+#     queryset = Activity.objects.all()
+#     serializer_class = ActivitySerializer
+#     # filter_backends = [filters.SearchFilter]
+#     # search_fields = ['=forum']
 
-    def get_queryset(self):
-        # return Certificate.objects.filter(user=self.request.user).order_by('-id')
-        return Activity.objects.filter().order_by('-id')
+#     def get_queryset(self):
+#         # return Certificate.objects.filter(user=self.request.user).order_by('-id')
+#         return Activity.objects.filter().order_by('-id')

@@ -30,9 +30,9 @@ class CertificateSerializer(serializers.ModelSerializer):
 
 
 
-class ActivitySerializer(serializers.ModelSerializer):
-    user = CustomUserSerializer(read_only=True)
+# class ActivitySerializer(serializers.ModelSerializer):
+#     user = CustomUserSerializer(read_only=True)
 
-    class Meta:
-        model = Activity
-        fields ='__all__'
+#     class Meta:
+#         model = Activity
+#         fields ='__all__'
