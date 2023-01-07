@@ -17,7 +17,7 @@ from rest_framework import filters
 
 # Create your views here.
 class FoodItemList(generics.ListAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     queryset = FoodItem.objects.all()
     serializer_class = FoodItemSerializer
     filter_backends = [filters.SearchFilter]
@@ -28,13 +28,13 @@ class FoodItemList(generics.ListAPIView):
 
 
 class FoodItemDetail(generics.RetrieveAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     queryset = FoodItem.objects.all()
     serializer_class = FoodItemSerializer
 
 
 class CreateFoodItem(generics.CreateAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     queryset = FoodItem.objects.all()
     serializer_class = FoodItemSerializer
 
@@ -64,7 +64,7 @@ class CreateFoodItem(generics.CreateAPIView):
         
 
 class EditFoodItem(generics.UpdateAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     serializer_class = FoodItemSerializer
     queryset = FoodItem.objects.all()
 
@@ -92,7 +92,7 @@ class EditFoodItem(generics.UpdateAPIView):
 
 
 class DeleteFoodItem(generics.RetrieveDestroyAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     serializer_class = FoodItemSerializer
     queryset = FoodItem.objects.all()
 
@@ -105,7 +105,7 @@ class DeleteFoodItem(generics.RetrieveDestroyAPIView):
 
 
 class CreateFoodAvatar(generics.CreateAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     parser_classes = [MultiPartParser, FormParser]
     queryset = FoodAvatar.objects.all()
     serializer_class = FoodAvatarSerializer
@@ -136,7 +136,7 @@ class RemoveFromCartView(APIView):
 
 
 class AddressList(generics.ListAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     serializer_class = AddressSerializer
 
     def get_queryset(self):
@@ -144,7 +144,7 @@ class AddressList(generics.ListAPIView):
 
 
 class CreateAddress(generics.CreateAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     serializer_class = AddressSerializer
     queryset = Address.objects.all()
 
@@ -160,7 +160,7 @@ class CreateAddress(generics.CreateAPIView):
         
 
 class EditAddress(generics.UpdateAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     serializer_class = AddressSerializer
     queryset = Address.objects.all()
 
@@ -180,7 +180,7 @@ class EditAddress(generics.UpdateAPIView):
 
 
 class FoodCartList(generics.ListAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     serializer_class = FoodItemSerializer
 
     def get_queryset(self):
@@ -188,7 +188,7 @@ class FoodCartList(generics.ListAPIView):
 
 
 class FoodOrderList(generics.ListAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     queryset = FoodOrder.objects.all()
     serializer_class = FoodOrderSerializer
     filter_backends = [filters.SearchFilter]
@@ -199,7 +199,7 @@ class FoodOrderList(generics.ListAPIView):
 
 
 class AddToOrderView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     serializer_class = FoodOrderSerializer
     queryset = FoodOrder.objects.all()
 
@@ -239,7 +239,7 @@ class AddToOrderView(APIView):
 
 
 class DeleteOrderView(generics.RetrieveDestroyAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     serializer_class = FoodOrderSerializer
     queryset = FoodOrder.objects.all()
 
@@ -264,7 +264,7 @@ class DeleteOrderView(generics.RetrieveDestroyAPIView):
 
 
 class UploadFileView(generics.CreateAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     parser_classes = [MultiPartParser, FormParser]
     queryset = Csv.objects.all()
     serializer_class = CsvSerializer
