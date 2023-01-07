@@ -28,6 +28,7 @@ urlpatterns = [
     path('djangobb/', include('apps.djangobb.urls')),
 
     path('calibration/', include('apps.calibration.urls')),
+    path('shopee/', include('apps.shopee.urls')),
 ]
 
 if settings.DEBUG:
