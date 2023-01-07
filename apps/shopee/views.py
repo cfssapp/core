@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 
 api_urls = {
-    "success": true,
+    "success": True,
     "data": {
         "list": [
     {
