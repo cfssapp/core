@@ -41,29 +41,27 @@ from rest_framework import filters
 # 	return JsonResponse(api_urls, safe=False)
 
 def fake_data_01(request):
-	api_urls = [
-    {
-        "success": True,
-    "data": {
-        "list": [
-            {
-                "id": 0,
-                "name": "Umi",
-                "nickName": "U",
-                "gender": "MALE"
-            },
-            {
-                "id": 1,
-                "name": "Fish",
-                "nickName": "B",
-                "gender": "FEMALE"
-            }
-        ]
-    },
-    "errorCode": 0
-    },
+	api_urls = {
+    "success": True,
+        "data": {
+            "list": [
+                {
+                    "id": 0,
+                    "name": "Umi",
+                    "nickName": "U",
+                    "gender": "MALE"
+                },
+                {
+                    "id": 1,
+                    "name": "Fish",
+                    "nickName": "B",
+                    "gender": "FEMALE"
+                }
+            ]
+        },
+        "errorCode": 0
+}
 
-]
 	return JsonResponse(api_urls, safe=False)
 
 
