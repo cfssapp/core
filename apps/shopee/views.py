@@ -14,8 +14,8 @@ api_urls = {
         "name": "100 Plus",
         "price": "RM4.53",
         "category": "Beverages",
-        "cartadded": false,
-        "ordered": false,
+        "cartadded": False,
+        "ordered": False,
         "order_id": ""
     },
     {
@@ -27,8 +27,8 @@ api_urls = {
         "name": "Double Cheeseburger",
         "price": "RM10.37",
         "category": "Burgers",
-        "cartadded": false,
-        "ordered": false,
+        "cartadded": False,
+        "ordered": False,
         "order_id": ""
     },
     {
@@ -40,8 +40,8 @@ api_urls = {
         "name": "Coca-Cola",
         "price": "RM4.53",
         "category": "Beverages",
-        "cartadded": false,
-        "ordered": false,
+        "cartadded": False,
+        "ordered": False,
         "order_id": ""
     },
     {
@@ -53,8 +53,8 @@ api_urls = {
         "name": "McChicken",
         "price": "RM8.49",
         "category": "Burgers",
-        "cartadded": false,
-        "ordered": false,
+        "cartadded": False,
+        "ordered": False,
         "order_id": ""
     }
 ]
