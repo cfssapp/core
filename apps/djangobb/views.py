@@ -43,7 +43,7 @@ from rest_framework import filters
 def fake_data_01(request):
 	api_urls = [
     {
-        "success": 1,
+        "success": True,
     "data": {
         "list": [
             {
