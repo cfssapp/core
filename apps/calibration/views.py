@@ -64,7 +64,7 @@ def apiOverview(request):
 
 
 class CertificateList(generics.ListAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     queryset = Certificate.objects.all()
     serializer_class = CertificateSerializer
     # filter_backends = [filters.SearchFilter]
@@ -76,13 +76,13 @@ class CertificateList(generics.ListAPIView):
 
 
 class CertificateDetail(generics.RetrieveAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     queryset = Certificate.objects.all()
     serializer_class = CertificateSerializer
 
 
 class CommentToCertificateView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     serializer_class = CertificateSerializer
     queryset = Certificate.objects.all()
 
@@ -124,14 +124,14 @@ class CommentToCertificateView(APIView):
 
 
 class CreateCommentImage(generics.CreateAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     parser_classes = [MultiPartParser, FormParser]
     queryset = CommentImage.objects.all()
     serializer_class = CommentImageSerializer
 
 
 class ActivityList(generics.ListAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     queryset = Activity.objects.all()
     serializer_class = ActivitySerializer
     # filter_backends = [filters.SearchFilter]
