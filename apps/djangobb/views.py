@@ -31,25 +31,11 @@ from rest_framework import filters
 def fake_data_01(request):
 	api_urls = [
     {
-    "success": true,
-    "data": {
-        "list": [
-            {
-                "id": 0,
-                "name": "Umi",
-                "nickName": "U",
-                "gender": "MALE"
-            },
-            {
-                "id": 1,
-                "name": "Fish",
-                "nickName": "B",
-                "gender": "FEMALE"
-            }
-        ]
+        "userId": 1,
+        "id": 1,
+        "title": "server: pythonanywhere",
+        "body": "This is a test."
     },
-    "errorCode": 0
-},
 
 ]
 	return JsonResponse(api_urls, safe=False)
