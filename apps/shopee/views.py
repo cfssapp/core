@@ -87,11 +87,10 @@ def apiOverview(request):
     queryset = Cart.objects.all()
     serializer = CartSerializer(queryset)
 
-
     jsonoutput = {
-                'status': True,
-                'message' : "Category List",
-                'response' : serializer.data,
+                "success": True,
+                'response' : serializer,
+                "errorCode": 0
             }
 
     return HttpResponse(json.dumps(jsonoutput), content_type='application/json')
