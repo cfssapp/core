@@ -12,6 +12,9 @@ from .models import Cart, Product
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
+import json
+
+
 api_urls = {
     "success": True,
     "data": {
@@ -109,14 +112,18 @@ class CartDetail(generics.RetrieveAPIView):
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
 
-    # def get_queryset(self):
-    #     queryset = Cart.objects.all()
-    #     serializer = CartSerializer(queryset, many=True)
-    #     response = {
-    #         "success": True,
-    #         'response' : serializer.data,
-    #         "errorCode": 0
-    #     }
-    #     return Response(response)
+
+class CartViewset(viewsets.ReadOnlyModelViewSet):
+    carts = Cart.objects.all()
+
+    def list(self, request):
+        if request.method == 'GET':
+            serializer = CartSerializer(self.carts, many=True)
+            response = {
+                'status': True,
+                'message' : "Category List",
+                'response' : serializer.data,
+            }
+            return HttpResponse(json.dumps(response), content_type='application/json')
 
 
