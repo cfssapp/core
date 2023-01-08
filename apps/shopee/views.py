@@ -78,20 +78,29 @@ api_urls = {
 
 
 
-@api_view(['GET'])
-def apiOverview(request):
+# @api_view(['GET'])
+# def apiOverview(request):
 	
-	return Response(api_urls)
+# 	return Response(api_urls)
 
-# def jsonView(request):
-#     queryset = Cart.objects.all()
-#     serializer = CartSerializer(queryset)
-#     response = {
-#             "success": True,
-#             'response' : serializer.data,
-#             "errorCode": 0
-#         }
-#     return Response(response)
+def apiOverview(request):
+    # queryset = Cart.objects.all()
+    # serializer = CartSerializer(queryset)
+    # response = {
+    #         "success": True,
+    #         'response' : serializer.data,
+    #         "errorCode": 0
+    #     }
+    # return Response(response)
+
+    response = {
+                'status': True,
+                'message' : "Category List",
+                'response' : api_urls,
+            }
+
+    return Response(response)
+    # return HttpResponse(json.dumps(response), content_type='application/json')
 
 
 
@@ -113,17 +122,17 @@ class CartDetail(generics.RetrieveAPIView):
     serializer_class = CartSerializer
 
 
-class CartViewset(viewsets.ReadOnlyModelViewSet):
-    carts = Cart.objects.all()
+# class CartViewset(viewsets.ReadOnlyModelViewSet):
+#     carts = Cart.objects.all()
 
-    def list(self, request):
-        if request.method == 'GET':
-            serializer = CartSerializer(self.carts, many=True)
-            response = {
-                'status': True,
-                'message' : "Category List",
-                'response' : serializer.data,
-            }
-            return HttpResponse(json.dumps(response), content_type='application/json')
+#     def list(self, request):
+#         if request.method == 'GET':
+#             serializer = CartSerializer(self.carts, many=True)
+#             response = {
+#                 'status': True,
+#                 'message' : "Category List",
+#                 'response' : serializer.data,
+#             }
+#             return HttpResponse(json.dumps(response), content_type='application/json')
 
 
