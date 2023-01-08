@@ -99,11 +99,23 @@ class CartDetail(generics.RetrieveAPIView):
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
 
-    def get_queryset(self):
+    # def get_queryset(self):
+    #     response = {
+    #         "success": True,
+
+    #         'data' : CartSerializer.data,
+    #         "errorCode": 0
+    #     }
+    #     return Response(response)
+
+
+def jsonView(request):
+    if request.method == 'GET':
+        categories = Cart.objects.all()
+        serializer = CartSerializer
         response = {
             "success": True,
-
-            'data' : CartSerializer.data,
+            'response' : serializer.data,
             "errorCode": 0
         }
         return Response(response)

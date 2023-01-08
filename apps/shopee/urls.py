@@ -6,4 +6,6 @@ urlpatterns = [
 
     path('cart/', views.CartList.as_view(), name='listcart'),
     path('cart/<int:pk>/', views.CartDetail.as_view(), name='detailcertificate'),
+
+    path('cart/json/', views.jsonView, name='json-view'),
 ]
