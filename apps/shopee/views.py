@@ -84,22 +84,16 @@ api_urls = {
 # 	return Response(api_urls)
 
 def apiOverview(request):
-    # queryset = Cart.objects.all()
-    # serializer = CartSerializer(queryset)
-    # response = {
-    #         "success": True,
-    #         'response' : serializer.data,
-    #         "errorCode": 0
-    #     }
-    # return Response(response)
+    queryset = Cart.objects.all()
+    serializer = CartSerializer(queryset)
+
 
     jsonoutput = {
                 'status': True,
                 'message' : "Category List",
-                'response' : api_urls,
+                'response' : serializer.data,
             }
 
-    # return Response(jsonoutput)
     return HttpResponse(json.dumps(jsonoutput), content_type='application/json')
 
 
