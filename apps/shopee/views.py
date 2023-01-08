@@ -98,3 +98,12 @@ class CartDetail(generics.RetrieveAPIView):
     # permission_classes = [permissions.IsAuthenticated]
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
+
+    def get_queryset(self):
+        response = {
+            "success": True,
+
+            'data' : CartSerializer.data,
+            "errorCode": 0
+        }
+        return Response(response)
