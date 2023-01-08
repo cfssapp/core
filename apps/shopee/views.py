@@ -116,7 +116,7 @@ def apiOverview(request):
     # serializer = CartSerializer(queryset, many=True)
 
     queryset = Product.objects.all()
-    serializer = ProductSerializer(queryset)
+    serializer = ProductSerializer(queryset, many=True)
 
     jsonoutput = {
                 "success": True,
