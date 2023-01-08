@@ -78,7 +78,7 @@ import json
 
 api_urls = {
     "success": True,
-    "data": [
+    "data": 
         {
             "id": 1,
             "list": [
@@ -102,7 +102,7 @@ api_urls = {
             "cart_id": "not set",
             "customer": "admin"
         }
-    ],
+    ,
     "errorCode": 0
 }
 
