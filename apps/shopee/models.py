@@ -8,6 +8,8 @@ from datetime import datetime
 class Product(models.Model):
     product_id = models.CharField(max_length=100, default="not set")
     product_name = models.CharField(max_length=255, default="not set")
+    product_price = models.CharField(max_length=255, default="not set")
+    product_category = models.CharField(max_length=255, default="not set")
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
