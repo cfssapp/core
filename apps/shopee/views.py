@@ -93,14 +93,14 @@ def apiOverview(request):
     #     }
     # return Response(response)
 
-    response = {
+    jsonoutput = {
                 'status': True,
                 'message' : "Category List",
                 'response' : api_urls,
             }
 
-    return Response(response)
-    # return HttpResponse(json.dumps(response), content_type='application/json')
+    # return Response(jsonoutput)
+    return HttpResponse(json.dumps(jsonoutput), content_type='application/json')
 
 
 
