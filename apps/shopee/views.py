@@ -80,6 +80,17 @@ def apiOverview(request):
 	
 	return Response(api_urls)
 
+def jsonView(request):
+    if request.method == 'GET':
+        queryset = Cart.objects.all()
+        serializer = CartSerializer(queryset, many=True)
+        response = {
+            "success": True,
+            'response' : serializer.data,
+            "errorCode": 0
+        }
+        return Response(response)
+
 
 
 class CartList(generics.ListAPIView):
@@ -109,13 +120,3 @@ class CartDetail(generics.RetrieveAPIView):
     #     return Response(response)
 
 
-def jsonView(request):
-    if request.method == 'GET':
-        categories = Cart.objects.all()
-        serializer = CartSerializer
-        response = {
-            "success": True,
-            'response' : serializer.data,
-            "errorCode": 0
-        }
-        return Response(response)
