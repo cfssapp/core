@@ -89,7 +89,7 @@ def apiOverview(request):
 
     jsonoutput = {
                 "success": True,
-                'response' : serializer.data,
+                'data' : serializer.data,
                 "errorCode": 0
             }
 
