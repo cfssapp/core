@@ -88,7 +88,7 @@ api_urls = {
                         "id": 1,
                         "email": "admin@admin.com",
                         "user_name": "admin",
-                        "is_active": true,
+                        "is_active": True,
                         "avatar": "https://antapi.pythonanywhere.com/media/upload_pics/287279348080d90deec11dfa24065fc0.jpg",
                         "status": "ok",
                         "currentAuthority": "admin",
@@ -96,7 +96,7 @@ api_urls = {
                     },
                     "product_id": "not set",
                     "product_name": "laptop",
-                    "addcart_id": null
+                    "addcart_id": True
                 }
             ],
             "cart_id": "not set",
