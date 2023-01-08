@@ -84,8 +84,9 @@ api_urls = {
 # 	return Response(api_urls)
 
 def apiOverview(request):
-    queryset = Cart.objects.all()
-    serializer = CartSerializer(queryset, many=True)
+    # queryset = Cart.objects.all()
+    queryset = Product.objects.all()
+    serializer = ProductSerializer(queryset, many=True)
 
     jsonoutput = {
                 "success": True,

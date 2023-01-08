@@ -15,8 +15,6 @@ class CartSerializer(serializers.ModelSerializer):
     user = CustomUserSerializer(read_only=True)
     products = ProductSerializer(many=True, read_only=True)
 
-    list = ProductSerializer(many=True, read_only=True)
-
     class Meta:
         model = Cart
         fields ='__all__'
