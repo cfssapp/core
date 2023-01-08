@@ -28,7 +28,10 @@ class Cart(models.Model):
     cart_id = models.CharField(max_length=100, default="not set")
     customer = models.CharField(max_length=100, default="not set")
 
-    list = models.ManyToManyField(Product, blank=True)
+    # list = models.ManyToManyField(Product, blank=True)
+
+    list = models.OneToOneField(Product, on_delete=models.CASCADE, blank=True, null=True)
+    
 
     class Meta:
         ordering = ['-id']
