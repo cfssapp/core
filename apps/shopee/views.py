@@ -81,15 +81,14 @@ def apiOverview(request):
 	return Response(api_urls)
 
 def jsonView(request):
-    # if request.method == 'GET':
-        queryset = Cart.objects.all()
-        serializer = CartSerializer(queryset)
-        response = {
+    queryset = Cart.objects.all()
+    serializer = CartSerializer(queryset)
+    response = {
             "success": True,
             'response' : serializer.data,
             "errorCode": 0
         }
-        return Response(response)
+    return Response(response)
 
 
 
