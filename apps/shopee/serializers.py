@@ -13,8 +13,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class CartSerializer(serializers.ModelSerializer):
     user = CustomUserSerializer(read_only=True)
-    # list = ProductSerializer(many=True, read_only=True)
-    list = ProductSerializer(read_only=True)
+    list = ProductSerializer(many=True, read_only=True)
 
     class Meta:
         model = Cart
