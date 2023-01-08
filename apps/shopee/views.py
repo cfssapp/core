@@ -76,52 +76,55 @@ import json
 #     "errorCode": 0
 # }
 
-api_urls = {
-    "success": True,
-    "data": 
-        {
-            "id": 1,
-            "list": [
-                {
-                    "id": 2,
-                    "user": {
-                        "id": 1,
-                        "email": "admin@admin.com",
-                        "user_name": "admin",
-                        "is_active": True,
-                        "avatar": "https://antapi.pythonanywhere.com/media/upload_pics/287279348080d90deec11dfa24065fc0.jpg",
-                        "status": "ok",
-                        "currentAuthority": "admin",
-                        "success": "true"
-                    },
-                    "product_id": "not set",
-                    "product_name": "laptop",
-                    "addcart_id": True
-                }
-            ],
-            "cart_id": "not set",
-            "customer": "admin"
-        }
-    ,
-    "errorCode": 0
-}
+# api_urls = {
+#     "success": True,
+#     "data": 
+#         {
+#             "id": 1,
+#             "list": [
+#                 {
+#                     "id": 2,
+#                     "user": {
+#                         "id": 1,
+#                         "email": "admin@admin.com",
+#                         "user_name": "admin",
+#                         "is_active": True,
+#                         "avatar": "https://antapi.pythonanywhere.com/media/upload_pics/287279348080d90deec11dfa24065fc0.jpg",
+#                         "status": "ok",
+#                         "currentAuthority": "admin",
+#                         "success": "true"
+#                     },
+#                     "product_id": "not set",
+#                     "product_name": "laptop",
+#                     "addcart_id": True
+#                 }
+#             ],
+#             "cart_id": "not set",
+#             "customer": "admin"
+#         }
+#     ,
+#     "errorCode": 0
+# }
 
-@api_view(['GET'])
-def apiOverview(request):
-	
-	return Response(api_urls)
-
+# @api_view(['GET'])
 # def apiOverview(request):
-#     queryset = Cart.objects.all()
-#     serializer = CartSerializer(queryset, many=True)
+	
+# 	return Response(api_urls)
 
-#     jsonoutput = {
-#                 "success": True,
-#                 'data' : serializer.data,
-#                 "errorCode": 0
-#             }
+def apiOverview(request):
+    # queryset = Cart.objects.all()
+    # serializer = CartSerializer(queryset, many=True)
 
-#     return HttpResponse(json.dumps(jsonoutput), content_type='application/json')
+    queryset = Product.objects.all()
+    serializer = ProductSerializer(queryset)
+
+    jsonoutput = {
+                "success": True,
+                'data' : serializer.data,
+                "errorCode": 0
+            }
+
+    return HttpResponse(json.dumps(jsonoutput), content_type='application/json')
 
 
 
