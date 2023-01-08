@@ -81,7 +81,7 @@ def apiOverview(request):
 	return Response(api_urls)
 
 def jsonView(request):
-    if request.method == 'GET':
+    # if request.method == 'GET':
         queryset = Cart.objects.all()
         serializer = CartSerializer(queryset, many=True)
         response = {
