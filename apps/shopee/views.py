@@ -1,4 +1,13 @@
 from django.shortcuts import render
+from django.http import JsonResponse, HttpResponse
+from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
+
+from rest_framework import generics
+from rest_framework.permissions import SAFE_METHODS, IsAuthenticated, IsAuthenticatedOrReadOnly, BasePermission, IsAdminUser, DjangoModelPermissions
+from rest_framework import viewsets, permissions
+
+from .serializers import CartSerializer, ProductSerializer
+from .models import Cart, Product
 
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -73,3 +82,19 @@ def apiOverview(request):
 
 
 
+class CartList(generics.ListAPIView):
+    # permission_classes = [permissions.IsAuthenticated]
+    queryset = Cart.objects.all()
+    serializer_class = CartSerializer
+    # filter_backends = [filters.SearchFilter]
+    # search_fields = ['=forum']
+
+    def get_queryset(self):
+        # return Certificate.objects.filter(user=self.request.user).order_by('-id')
+        return Cart.objects.filter().order_by('-id')
+
+
+class CartDetail(generics.RetrieveAPIView):
+    # permission_classes = [permissions.IsAuthenticated]
+    queryset = Cart.objects.all()
+    serializer_class = CartSerializer

@@ -1,20 +1,20 @@
 from rest_framework import serializers
-from .models import Certificate, Comment, CommentImage, Activity
+from .models import Cart, Product
 from users.serializers import CustomUserSerializer
 
 
-class CommentSerializer(serializers.ModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
     user = CustomUserSerializer(read_only=True)
 
     class Meta:
-        model = Comment
+        model = Product
         fields ='__all__'
 
 
-class CertificateSerializer(serializers.ModelSerializer):
+class CartSerializer(serializers.ModelSerializer):
     user = CustomUserSerializer(read_only=True)
-    comments = CommentSerializer(many=True, read_only=True)
+    products = ProductSerializer(many=True, read_only=True)
 
     class Meta:
-        model = Certificate
+        model = Cart
         fields ='__all__'
