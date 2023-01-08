@@ -76,44 +76,44 @@ import json
 #     "errorCode": 0
 # }
 
-api_urls = {
-    "success": True,
-    "data": {
-        "list": [
-    {
-        "id": 5,
-        "avatar": {
-            "id": 43,
-            "imagefile": "https://antapi.pythonanywhere.com/media/upload_pics/2509_SDg7PyR.png"
-        },
-        "name": "100 Plus",
-        "price": "RM4.53",
-        "category": "Beverages",
-        "cartadded": False,
-        "ordered": False,
-        "order_id": ""
-    },
-]
-    },
-    "errorCode": 0
-}
+# api_urls = {
+#     "success": True,
+#     "data": {
+#         "list": [
+#     {
+#         "id": 5,
+#         "avatar": {
+#             "id": 43,
+#             "imagefile": "https://antapi.pythonanywhere.com/media/upload_pics/2509_SDg7PyR.png"
+#         },
+#         "name": "100 Plus",
+#         "price": "RM4.53",
+#         "category": "Beverages",
+#         "cartadded": False,
+#         "ordered": False,
+#         "order_id": ""
+#     },
+# ]
+#     },
+#     "errorCode": 0
+# }
 
-@api_view(['GET'])
-def apiOverview(request):
-	
-	return Response(api_urls)
-
+# @api_view(['GET'])
 # def apiOverview(request):
-#     queryset = Cart.objects.all()
-#     serializer = CartSerializer(queryset, many=True)
+	
+# 	return Response(api_urls)
 
-#     jsonoutput = {
-#                 "success": True,
-#                 'data' : serializer.data,
-#                 "errorCode": 0
-#             }
+def apiOverview(request):
+    queryset = Cart.objects.all()
+    serializer = CartSerializer(queryset, many=True)
 
-#     return HttpResponse(json.dumps(jsonoutput), content_type='application/json')
+    jsonoutput = {
+                "success": True,
+                'data' : serializer.data,
+                "errorCode": 0
+            }
+
+    return HttpResponse(json.dumps(jsonoutput), content_type='application/json')
 
 
 
