@@ -83,7 +83,7 @@ def apiOverview(request):
 def jsonView(request):
     # if request.method == 'GET':
         queryset = Cart.objects.all()
-        serializer = CartSerializer(queryset, many=True)
+        serializer = CartSerializer(queryset)
         response = {
             "success": True,
             'response' : serializer.data,
@@ -110,14 +110,14 @@ class CartDetail(generics.RetrieveAPIView):
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
 
-    def get_queryset(self):
-        queryset = Cart.objects.all()
-        serializer = CartSerializer(queryset, many=True)
-        response = {
-            "success": True,
-            'response' : serializer.data,
-            "errorCode": 0
-        }
-        return Response(response)
+    # def get_queryset(self):
+    #     queryset = Cart.objects.all()
+    #     serializer = CartSerializer(queryset, many=True)
+    #     response = {
+    #         "success": True,
+    #         'response' : serializer.data,
+    #         "errorCode": 0
+    #     }
+    #     return Response(response)
 
 
