@@ -169,7 +169,7 @@ CORS_ORIGIN_WHITELIST = [
     "https://www.moba.my",
     "https://test.moba.my",
     "https://vercel.moba.my",
-    "https://chatbot.dogpt.workers.dev/",
+    "https://chatbot.dogpt.workers.dev",
 ]
 
 # Custom user model & JWT
