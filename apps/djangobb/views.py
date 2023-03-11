@@ -66,7 +66,7 @@ def fake_data_01(request):
 
 
 class TopicList(generics.ListAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     queryset = Topic.objects.all()
     serializer_class = TopicSerializer
     filter_backends = [filters.SearchFilter]
@@ -77,13 +77,13 @@ class TopicList(generics.ListAPIView):
 
 
 class TopicDetail(generics.RetrieveAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     queryset = Topic.objects.all()
     serializer_class = TopicSerializer
 
 
 class CreateTopic(generics.CreateAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     queryset = Topic.objects.all()
     serializer_class = TopicSerializer
 
