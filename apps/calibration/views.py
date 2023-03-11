@@ -77,6 +77,9 @@ class CertificateList(generics.ListAPIView):
 
 class CertificateDetail(generics.RetrieveAPIView):
     # permission_classes = [permissions.IsAuthenticated]
+    model = Certificate
+    pk_url_kwarg = 'certificate_id2'
+
     queryset = Certificate.objects.all()
     serializer_class = CertificateSerializer
 
