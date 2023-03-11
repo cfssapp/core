@@ -35,7 +35,7 @@ class Comment(models.Model):
 
 class Certificate(models.Model):
     certificate_id = models.CharField(max_length=100, default="not set")
-    certificate_id2 = models.IntegerField()
+    certificate_id2 = models.IntegerField(blank=True, null=True)
     instrument = models.CharField(max_length=100, default="not set")
     customer = models.CharField(max_length=100, default="not set")
 
