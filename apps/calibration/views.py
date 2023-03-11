@@ -80,7 +80,7 @@ class CertificateDetail(generics.RetrieveAPIView):
 
     queryset = Certificate.objects.all()
     serializer_class = CertificateSerializer
-    lookup_field = 'certificate_id2'
+    lookup_field = 'certificate_id'
 
 
 class CommentToCertificateView(APIView):
