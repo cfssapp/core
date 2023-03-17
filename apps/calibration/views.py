@@ -141,7 +141,7 @@ class CommentToCertificateView(APIView):
         # comment_user = Certificate.objects.filter(id=topic_id)
 
 
-        new_post = Comment2.objects.create(
+        new_post = Comment.objects.create(
             # user=self.request.user,
             content=post_content,
             cert_id=topic_id,
