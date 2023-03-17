@@ -109,7 +109,7 @@ class CommentToCertificateView(APIView):
             new_post.image.add(avatar_get)
 
         order_qs = Certificate.objects.filter(id=topic_id).order_by('-id').first()
-        order_qs.comments.add(new_post)
+        order_qs.comments2.add(new_post)
 
         
         # create activity
