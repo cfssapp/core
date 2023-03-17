@@ -99,7 +99,7 @@ class CommentToCertificateView(APIView):
 
 
         new_post = Comment.objects.create(
-            user=self.request.user,
+            # user=self.request.user,
             content=post_content,
             cert_id=topic_id,
         )
