@@ -94,10 +94,12 @@ class CommentToCertificateView(APIView):
         
         avatar_id = request.data.get('imagesupload_id')
         # avatar_get = CommentImage.objects.get(id=avatar_id)
+        comment_user = "admin"
 
 
         new_post = Comment.objects.create(
-            user=self.request.user,
+            # user=self.request.user,
+            user=comment_user,
             content=post_content,
             cert_id=topic_id,
         )
