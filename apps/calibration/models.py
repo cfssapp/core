@@ -59,6 +59,7 @@ class Certificate(models.Model):
     customer = models.CharField(max_length=100, default="not set")
 
     comments = models.ManyToManyField(Comment, blank=True)
+    comments2 = models.ManyToManyField(Comment2, blank=True)
 
     class Meta:
         ordering = ['-id']
