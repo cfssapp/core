@@ -98,8 +98,8 @@ class CommentToCertificateView(APIView):
         # comment_user = Certificate.objects.filter(id=topic_id)
 
 
-        new_post = Comment.objects.create(
-            user=self.request.user,
+        new_post = Comment2.objects.create(
+            # user=self.request.user,
             content=post_content,
             cert_id=topic_id,
         )
@@ -113,13 +113,13 @@ class CommentToCertificateView(APIView):
 
         
         # create activity
-        new_activity = Activity.objects.create(
-            user=self.request.user,
-            group=post_content,
-            project=topic_id,
-            certificate=order_qs,
-            template='commented on @{certificate}.'
-        )
+        # new_activity = Activity.objects.create(
+        #     user=self.request.user,
+        #     group=post_content,
+        #     project=topic_id,
+        #     certificate=order_qs,
+        #     template='commented on @{certificate}.'
+        # )
 
 
         articles = Certificate.objects.get(id=topic_id)
