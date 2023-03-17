@@ -83,7 +83,7 @@ class CertificateDetail(generics.RetrieveAPIView):
     lookup_field = 'certificate_id'
 
 
-class CommentToCertificateView(APIView):
+class CommentToCertificateView2(APIView):
     # permission_classes = [permissions.IsAuthenticated]
     serializer_class = CertificateSerializer
     queryset = Certificate.objects.all()
@@ -126,7 +126,7 @@ class CommentToCertificateView(APIView):
         serializer = CertificateSerializer(articles)
         return JsonResponse(serializer.data, safe=False)
     
-class CommentToCertificateView2(APIView):
+class CommentToCertificateView(APIView):
     # permission_classes = [permissions.IsAuthenticated]
     serializer_class = CertificateSerializer
     queryset = Certificate.objects.all()
