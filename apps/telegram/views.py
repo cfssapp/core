@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 
 from rest_framework import generics
 
-from .serializers import CertificateSerializer, CommentSerializer, CommentImageSerializer, ActivitySerializer
+from .serializers import TelegramSNSerializer
 from .models import TelegramSN
 
 # Create your views here.
@@ -33,7 +33,7 @@ def apiOverview(request):
 class TelegramSNList(generics.ListAPIView):
 
     queryset = TelegramSN.objects.all()
-    serializer_class = CertificateSerializer
+    serializer_class = TelegramSNSerializer
 
 
     def get_queryset(self):
