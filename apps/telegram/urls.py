@@ -2,7 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.apiOverview, name="api-overview01"),
 
     # path('sn/', views.TelegramSNList.as_view(), name='listsn01'),
     path('sn/', views.PostToUserList.as_view(), name='listsn01'),
