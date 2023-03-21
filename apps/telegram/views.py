@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 
 from rest_framework import generics
 
-from .serializers import TelegramSNSerializer, TelegramCommentSerializer
+from .serializers import TelegramSNSerializer, TelegramCommentSerializer, TelegramUserSerializer
 from .models import TelegramSN, TelegramComment, TelegramUser
 
 # Create your views here.
@@ -39,3 +39,19 @@ class TelegramSNList(generics.ListAPIView):
     def get_queryset(self):
 
         return TelegramSN.objects.filter().order_by('-id')
+    
+    
+class TelegramUserList(generics.ListAPIView):
+
+    queryset = TelegramUser.objects.all()
+    serializer_class = TelegramUserSerializer
+
+    def get_queryset(self):
+        return TelegramUser.objects.filter().order_by('-id')
+    
+
+class TelegramUserDetail(generics.RetrieveAPIView):
+
+    queryset = TelegramUser.objects.all()
+    serializer_class = TelegramUserSerializer
+    lookup_field = 'telegram_id'
