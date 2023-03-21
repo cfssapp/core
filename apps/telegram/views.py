@@ -30,7 +30,6 @@ def apiOverview(request):
 
 
 class TelegramSNList(generics.ListAPIView):
-
     queryset = TelegramSN.objects.all()
     serializer_class = TelegramSNSerializer
 
@@ -39,7 +38,6 @@ class TelegramSNList(generics.ListAPIView):
     
     
 class TelegramUserList(generics.ListAPIView):
-
     queryset = TelegramUser.objects.all()
     serializer_class = TelegramUserSerializer
 
@@ -48,7 +46,6 @@ class TelegramUserList(generics.ListAPIView):
     
 
 class TelegramUserDetail(generics.RetrieveAPIView):
-
     queryset = TelegramUser.objects.all()
     serializer_class = TelegramUserSerializer
     lookup_field = 'telegram_id'
@@ -60,7 +57,6 @@ class PostToUser(APIView):
 
     def post(self, request, *args, **kwargs):
 
-        
         telegram_user_id = request.data.get('user_id')
         telegram_first_name = request.data.get('first_name')
 
@@ -73,9 +69,30 @@ class PostToUser(APIView):
                 telegram_id=telegram_user_id,
                 first_name=telegram_first_name,
             )
-            
 
+        query02 = TelegramUser.objects.get(telegram_id=telegram_user_id)
+        serializer = TelegramUserSerializer(query02)
+        return JsonResponse(serializer.data, safe=False)
+    
+    
+class PostToUserList(APIView):
+    # serializer_class = TelegramUserSerializer
+    # queryset = TelegramUser.objects.all()
 
+    def post(self, request, *args, **kwargs):
+
+        telegram_user_id = request.data.get('user_id')
+        telegram_first_name = request.data.get('first_name')
+
+        if TelegramUser.objects.filter(telegram_id=telegram_user_id).exists():
+            query01 = TelegramUser.objects.get(telegram_id=telegram_user_id)
+            query01.request_count += 1
+            query01.save()
+        else:    
+            new_user = TelegramUser.objects.create(
+                telegram_id=telegram_user_id,
+                first_name=telegram_first_name,
+            )
 
         query02 = TelegramUser.objects.get(telegram_id=telegram_user_id)
         serializer = TelegramUserSerializer(query02)
