@@ -9,26 +9,6 @@ from .serializers import TelegramSNSerializer, TelegramCommentSerializer, Telegr
 from .models import TelegramSN, TelegramComment, TelegramUser
 
 # Create your views here.
-api_urls = {
-    "data": [
-        {
-            "id": "trend-1",
-            "updatedAt": "2021-08-20T11:49:35.376Z",
-        },
-        {
-            "id": "trend-2",
-            "updatedAt": "2021-08-20T11:49:35.376Z",
-            
-        },
-    ]
-}
-
-
-@api_view(['GET'])
-def apiOverview(request):
-	return Response(api_urls)
-
-
 class TelegramSNList(generics.ListAPIView):
     queryset = TelegramSN.objects.all()
     serializer_class = TelegramSNSerializer
@@ -74,9 +54,6 @@ class PostToUser(APIView):
     
     
 class PostToUserList(APIView):
-# class PostToUserList(generics.ListAPIView):
-    queryset = TelegramSN.objects.all()
-    serializer_class = TelegramSNSerializer
 
     def post(self, request, *args, **kwargs):
 
@@ -97,3 +74,9 @@ class PostToUserList(APIView):
         query03 = TelegramSN.objects.all()
         serializer = TelegramSNSerializer(query03, many=True)
         return JsonResponse(serializer.data, safe=False)
+    
+
+class TelegramSNDetail(generics.RetrieveAPIView):
+    queryset = TelegramSN.objects.all()
+    serializer_class = TelegramSNSerializer
+    lookup_field = 'sn'
