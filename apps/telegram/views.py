@@ -29,6 +29,12 @@ class TelegramUserDetail(generics.RetrieveAPIView):
     queryset = TelegramUser.objects.all()
     serializer_class = TelegramUserSerializer
     lookup_field = 'telegram_id'
+    
+
+class TelegramSNDetail(generics.RetrieveAPIView):
+    queryset = TelegramSN.objects.all()
+    serializer_class = TelegramSNSerializer
+    lookup_field = 'sn'
 
 
 class PostToUser(APIView):
@@ -54,8 +60,6 @@ class PostToUser(APIView):
     
     
 class PostToUserList(APIView):
-    queryset = TelegramSN.objects.all()
-    serializer_class = TelegramSNSerializer
 
     def post(self, request, *args, **kwargs):
 
@@ -78,7 +82,4 @@ class PostToUserList(APIView):
         return JsonResponse(serializer.data, safe=False)
     
 
-# class TelegramSNDetail(generics.RetrieveAPIView):
-#     queryset = TelegramSN.objects.all()
-#     serializer_class = TelegramSNSerializer
-#     lookup_field = 'sn'
+
