@@ -59,14 +59,21 @@ class PostToUser(APIView):
     queryset = TelegramUser.objects.all()
 
     def post(self, request, *args, **kwargs):
-        telegram_user_id = request.data.get('user_id')
+
         
-
-        new_user = TelegramUser.objects.create(
-            telegram_id=telegram_user_id,
-        )
-
-
+        telegram_user_id = request.data.get('user_id')
         query02 = TelegramUser.objects.get(telegram_id=telegram_user_id)
+        
+        if query02 is None:
+            new_user = TelegramUser.objects.create(
+                telegram_id=telegram_user_id,
+            )
+
+        else:
+            query02.request_count = query02.request_count + 1
+
+
+
+        # query02 = TelegramUser.objects.get(telegram_id=telegram_user_id)
         serializer = TelegramUserSerializer(query02)
         return JsonResponse(serializer.data, safe=False)
