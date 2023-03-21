@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class TelegramUser(models.Model):
     telegram_id = models.CharField(max_length=255)
-    request_count = models.IntegerField(blank=True, null=True)
+    request_count = models.IntegerField(default=0, blank=True, null=True)
 
     class Meta:
         ordering = ['-id']
