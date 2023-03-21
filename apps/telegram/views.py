@@ -62,6 +62,7 @@ class PostToUser(APIView):
 
         
         telegram_user_id = request.data.get('user_id')
+        telegram_first_name = request.data.get('first_name')
 
         if TelegramUser.objects.filter(telegram_id=telegram_user_id).exists():
             query01 = TelegramUser.objects.get(telegram_id=telegram_user_id)
@@ -70,6 +71,7 @@ class PostToUser(APIView):
         else:    
             new_user = TelegramUser.objects.create(
                 telegram_id=telegram_user_id,
+                first_name=telegram_first_name,
             )
             
 
