@@ -8,6 +8,7 @@ urlpatterns = [
 
     path('user/', views.TelegramUserList.as_view(), name='listuser01'),
     path('user/<slug:telegram_id>/', views.TelegramUserDetail.as_view(), name='detailtelegramuser01'),
+    path('post-to-user/', views.PostToUser.as_view(), name='posttouser01'),
 
 
 ]
