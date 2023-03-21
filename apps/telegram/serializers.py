@@ -9,7 +9,7 @@ class TelegramUserSerializer(serializers.ModelSerializer):
         fields ='__all__'
 
 class TelegramCommentSerializer(serializers.ModelSerializer):
-    user = CustomUserSerializer(read_only=True)
+    user = TelegramUserSerializerread_only=True)
 
     class Meta:
         model = TelegramComment
