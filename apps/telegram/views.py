@@ -1,8 +1,8 @@
 from django.shortcuts import render
-
+from django.http import JsonResponse, HttpResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-
+from rest_framework.views import APIView
 from rest_framework import generics
 
 from .serializers import TelegramSNSerializer, TelegramCommentSerializer, TelegramUserSerializer
@@ -26,7 +26,6 @@ api_urls = {
 
 @api_view(['GET'])
 def apiOverview(request):
-	
 	return Response(api_urls)
 
 
@@ -35,9 +34,7 @@ class TelegramSNList(generics.ListAPIView):
     queryset = TelegramSN.objects.all()
     serializer_class = TelegramSNSerializer
 
-
     def get_queryset(self):
-
         return TelegramSN.objects.filter().order_by('-id')
     
     
@@ -55,3 +52,21 @@ class TelegramUserDetail(generics.RetrieveAPIView):
     queryset = TelegramUser.objects.all()
     serializer_class = TelegramUserSerializer
     lookup_field = 'telegram_id'
+
+
+class PostToUser(APIView):
+    serializer_class = TelegramUserSerializer
+    queryset = TelegramUser.objects.all()
+
+    def post(self, request, *args, **kwargs):
+        telegram_user_id = request.data.get('user_id')
+        
+
+        new_user = TelegramUser.objects.create(
+            telegram_id=telegram_user_id,
+        )
+
+
+        query02 = TelegramUser.objects.get(telegram_id=telegram_user_id)
+        serializer = TelegramUserSerializer(query02)
+        return JsonResponse(serializer.data, safe=False)
