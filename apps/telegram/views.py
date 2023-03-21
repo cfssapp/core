@@ -54,6 +54,8 @@ class PostToUser(APIView):
     
     
 class PostToUserList(APIView):
+    queryset = TelegramSN.objects.all()
+    serializer_class = TelegramSNSerializer
 
     def post(self, request, *args, **kwargs):
 
