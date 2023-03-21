@@ -73,8 +73,8 @@ class PostToUser(APIView):
         return JsonResponse(serializer.data, safe=False)
     
     
-# class PostToUserList(APIView):
-class PostToUserList(generics.ListAPIView):
+class PostToUserList(APIView):
+# class PostToUserList(generics.ListAPIView):
     queryset = TelegramSN.objects.all()
     serializer_class = TelegramSNSerializer
 
@@ -95,5 +95,5 @@ class PostToUserList(generics.ListAPIView):
 
         # query03 = TelegramSN.objects.get(id=1)
         query03 = TelegramSN.objects.all()
-        serializer = TelegramSNSerializer(query03)
+        serializer = TelegramSNSerializer(query03, many=True)
         return JsonResponse(serializer.data, safe=False)
