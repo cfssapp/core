@@ -29,7 +29,7 @@ class TelegramUserDetail(generics.RetrieveAPIView):
     queryset = TelegramUser.objects.all()
     serializer_class = TelegramUserSerializer
     lookup_field = 'telegram_id'
-    
+
 
 class TelegramSNDetail(generics.RetrieveAPIView):
     queryset = TelegramSN.objects.all()
@@ -82,4 +82,24 @@ class PostToUserList(APIView):
         return JsonResponse(serializer.data, safe=False)
     
 
+class PostToSNDetail(APIView):
 
+    def post(self, request, *args, **kwargs):
+
+        telegram_user_id = request.data.get('user_id')
+        telegram_first_name = request.data.get('first_name')
+        telegram_sn = request.data.get('sn')
+
+        if TelegramUser.objects.filter(telegram_id=telegram_user_id).exists():
+            query01 = TelegramUser.objects.get(telegram_id=telegram_user_id)
+            query01.request_count += 1
+            query01.save()
+        else:    
+            new_user = TelegramUser.objects.create(
+                telegram_id=telegram_user_id,
+                first_name=telegram_first_name,
+            )
+
+        query03 = TelegramSN.objects.get(sn=telegram_sn)
+        serializer = TelegramSNSerializer(query03)
+        return JsonResponse(serializer.data, safe=False)
