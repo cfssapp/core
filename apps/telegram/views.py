@@ -92,6 +92,6 @@ class PostToUserList(APIView):
                 first_name=telegram_first_name,
             )
 
-        query03 = TelegramSN.objects.get(pk=1)
+        query03 = TelegramSN.objects.filter().order_by('-id')
         serializer = TelegramSNSerializer(query03)
         return JsonResponse(serializer.data, safe=False)
