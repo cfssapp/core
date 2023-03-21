@@ -29,6 +29,7 @@ urlpatterns = [
 
     path('calibration/', include('apps.calibration.urls')),
     path('shopee/', include('apps.shopee.urls')),
+    path('telegram/', include('apps.telegram.urls')),
 ]
 
 if settings.DEBUG:

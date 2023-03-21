@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'apps.djangobb',
     'apps.calibration',
     'apps.shopee',
+    'apps.telegram',
 
     'import_export',
     'rest_framework',
