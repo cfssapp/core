@@ -10,7 +10,7 @@ class TelegramUser(models.Model):
         ordering = ['-id']
 
     def __str__(self):
-        return self.telegram_first_name
+        return self.first_name
     
 
 class TelegramComment(models.Model):
