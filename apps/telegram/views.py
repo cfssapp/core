@@ -78,7 +78,7 @@ class PostToUserList(APIView):
         return JsonResponse(serializer.data, safe=False)
     
 
-class TelegramSNDetail(generics.RetrieveAPIView):
-    queryset = TelegramSN.objects.all()
-    serializer_class = TelegramSNSerializer
-    lookup_field = 'sn'
+# class TelegramSNDetail(generics.RetrieveAPIView):
+#     queryset = TelegramSN.objects.all()
+#     serializer_class = TelegramSNSerializer
+#     lookup_field = 'sn'
