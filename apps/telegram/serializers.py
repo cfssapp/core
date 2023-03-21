@@ -5,6 +5,7 @@ from users.serializers import CustomUserSerializer
 
 
 class TelegramCommentSerializer(serializers.ModelSerializer):
+    user = CustomUserSerializer(read_only=True)
 
     class Meta:
         model = TelegramComment

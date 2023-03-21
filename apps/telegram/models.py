@@ -19,6 +19,7 @@ class TelegramComment(models.Model):
     updated = models.DateTimeField(null=True)
 
     sn_id = models.CharField(max_length=100, blank=True, null=True)
+    user = models.ForeignKey(TelegramUser, on_delete=models.CASCADE)
 
 
     class Meta:

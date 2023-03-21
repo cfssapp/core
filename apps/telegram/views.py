@@ -5,8 +5,8 @@ from rest_framework.decorators import api_view
 
 from rest_framework import generics
 
-from .serializers import TelegramSNSerializer
-from .models import TelegramSN
+from .serializers import TelegramSNSerializer, TelegramCommentSerializer
+from .models import TelegramSN, TelegramComment, TelegramUser
 
 # Create your views here.
 api_urls = {
