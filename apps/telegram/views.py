@@ -100,6 +100,9 @@ class PostToSNDetail(APIView):
                 first_name=telegram_first_name,
             )
 
-        query03 = TelegramSN.objects.get(sn=telegram_sn)
-        serializer = TelegramSNSerializer(query03)
-        return JsonResponse(serializer.data, safe=False)
+        if TelegramUser.objects.filter(sn=telegram_sn).exists():
+            query03 = TelegramSN.objects.get(sn=telegram_sn)
+            serializer = TelegramSNSerializer(query03)
+            return JsonResponse(serializer.data, safe=False)
+        else: 
+            return JsonResponse({"detail": "Not found."}, safe=False)
