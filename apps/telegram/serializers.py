@@ -1,8 +1,12 @@
 from rest_framework import serializers
-from .models import TelegramSN, TelegramComment
-from users.serializers import CustomUserSerializer
+from .models import TelegramSN, TelegramComment, TelegramUser
 
 
+class TelegramUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = TelegramUser
+        fields ='__all__'
 
 class TelegramCommentSerializer(serializers.ModelSerializer):
     user = CustomUserSerializer(read_only=True)
